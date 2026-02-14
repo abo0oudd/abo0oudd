@@ -33,10 +33,10 @@
             height: 150%;
             top: -25%;
             left: -25%;
-            background: radial-gradient(circle at 20% 30%, rgba(170, 70, 255, 0.5) 0%, transparent 25%),
-                        radial-gradient(circle at 80% 70%, rgba(140, 50, 240, 0.6) 0%, transparent 30%),
-                        radial-gradient(circle at 40% 80%, rgba(200, 130, 255, 0.4) 0%, transparent 35%),
-                        radial-gradient(circle at 90% 20%, rgba(220, 100, 255, 0.5) 0%, transparent 28%);
+            background: radial-gradient(circle at 20% 30%, rgba(255, 70, 150, 0.4) 0%, transparent 25%),
+                        radial-gradient(circle at 80% 70%, rgba(70, 130, 255, 0.5) 0%, transparent 30%),
+                        radial-gradient(circle at 40% 80%, rgba(255, 215, 0, 0.3) 0%, transparent 35%),
+                        radial-gradient(circle at 90% 20%, rgba(200, 0, 255, 0.35) 0%, transparent 28%);
             filter: blur(60px);
             animation: auraMove 25s infinite alternate ease-in-out;
             z-index: -2;
@@ -168,7 +168,7 @@
         }
 
         .share-popup .copy-btn {
-            background: linear-gradient(135deg, #aa5aff, #7d3cff);
+            background: linear-gradient(135deg, #667eea, #764ba2);
             border: none;
             border-radius: 30px;
             padding: 12px;
@@ -187,7 +187,7 @@
         .share-popup .copy-btn:hover {
             transform: scale(1.02);
             filter: brightness(1.2);
-            box-shadow: 0 5px 15px #aa5aff;
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.5);
         }
 
         .share-popup .copy-btn i {
@@ -199,6 +199,7 @@
             justify-content: center;
             margin-bottom: 24px;
             position: relative;
+            height: 150px; /* تثبيت ارتفاع لمنع القفز */
         }
 
         .avatar img {
@@ -207,16 +208,16 @@
             border-radius: 50%;
             object-fit: cover;
             box-shadow: 0 15px 35px rgba(0, 0, 0, 0.8), 0 0 0 3px rgba(255, 255, 255, 0.2);
-            position: relative;
+            transition: opacity 0.4s ease-in-out; /* تأثير التلاشي */
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
             z-index: 2;
-            transition: opacity 0.8s ease-in-out; /* تأثير التلاشي */
             opacity: 1;
         }
 
-        .avatar img.fade-out {
-            opacity: 0;
-        }
-
+        /* الهالة حول الصورة */
         .avatar::before {
             content: '';
             position: absolute;
@@ -226,18 +227,12 @@
             width: 150px;
             height: 150px;
             border-radius: 50%;
-            background: linear-gradient(45deg, #b266ff, #aa55ff, #c080ff, #b266ff);
+            background: linear-gradient(45deg, #ff3366, #33ccff, #ffcc00, #ff3366);
             background-size: 300% 300%;
             filter: blur(16px);
             opacity: 0.8;
             animation: glowRotate 6s infinite alternate linear;
             z-index: 1;
-            transition: background 0.8s ease; /* سلسة عند تغيير اللون */
-        }
-
-        /* إزالة animation مؤقتاً عند تغيير اللون يدوياً، سنضبطها بالجافاسكربت */
-        .avatar.animating::before {
-            animation: glowRotate 6s infinite alternate linear;
         }
 
         @keyframes glowRotate {
@@ -260,26 +255,26 @@
             background-clip: text;
         }
 
-        /* رسالة ترحيب متحركة بنفسجية فخمة */
+        /* رسالة ترحيب متحركة - Welcome to my world بالبنفسجي */
         .welcome-message {
             text-align: center;
             margin: 15px 0 20px;
             font-size: 26px;
             font-weight: 800;
             color: transparent;
-            background: linear-gradient(135deg, #dab0ff, #b57cff, #9f4dff, #dab0ff);
+            background: linear-gradient(135deg, #c084fc, #a855f7, #d8b4fe);
             -webkit-background-clip: text;
             background-clip: text;
-            background-size: 300% auto;
-            animation: shine 4s linear infinite, floatText 2s ease-in-out infinite alternate;
-            text-shadow: 0 0 20px #b266ff, 0 0 40px #aa55ff;
+            background-size: 200% auto;
+            animation: shine 3s linear infinite, floatText 2s ease-in-out infinite alternate;
+            text-shadow: 0 0 20px rgba(168, 85, 247, 0.7);
             letter-spacing: 1.5px;
-            font-family: 'Poppins', 'Inter', sans-serif;
+            text-transform: uppercase;
         }
 
         @keyframes shine {
             0% { background-position: 0% center; }
-            100% { background-position: 300% center; }
+            100% { background-position: 200% center; }
         }
 
         @keyframes floatText {
@@ -352,7 +347,7 @@
         .fa-instagram { color: #f56040; background: linear-gradient(45deg, #f09433, #d62976); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
         .fa-tiktok { color: #ff0050; text-shadow: 0 0 10px #00f2ea; }
         .fa-youtube { color: #ff0000; text-shadow: 0 0 10px #ff4d4d; }
-        .fa-k { color: #4CAF50; text-shadow: 0 0 15px #00ff80; } /* أخضر */
+        .fa-k { color: #4CAF50; text-shadow: 0 0 15px #00ff80; }
 
         .link-item:hover {
             background: rgba(255, 255, 255, 0.18);
@@ -371,12 +366,12 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            background: linear-gradient(145deg, rgba(140, 70, 255, 0.2), rgba(100, 40, 200, 0.3));
+            background: linear-gradient(145deg, rgba(88, 101, 242, 0.2), rgba(55, 65, 180, 0.3));
             backdrop-filter: blur(8px);
             padding: 20px 28px;
             border-radius: 40px;
-            border: 1px solid rgba(170, 100, 255, 0.5);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6), 0 0 30px rgba(170, 100, 255, 0.4);
+            border: 1px solid rgba(114, 137, 218, 0.5);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6), 0 0 30px rgba(114, 137, 218, 0.4);
             transition: all 0.3s ease;
             cursor: pointer;
             text-decoration: none;
@@ -388,8 +383,8 @@
 
         .discord-card:hover {
             transform: scale(1.02) translateY(-3px);
-            border-color: #b57cff;
-            box-shadow: 0 20px 30px -5px black, 0 0 40px #b57cff;
+            border-color: #7289da;
+            box-shadow: 0 20px 30px -5px black, 0 0 40px #7289da;
         }
 
         .discord-card .info {
@@ -400,7 +395,7 @@
 
         .discord-card .info i {
             font-size: 42px;
-            color: #7289da; /* أزرق ديسكورد الأصلي */
+            color: #7289da;
             filter: drop-shadow(0 0 15px #7289da);
         }
 
@@ -412,7 +407,7 @@
         .discord-card .info .text .title {
             font-size: 20px;
             font-weight: 700;
-            background: linear-gradient(135deg, #fff, #e5ccff);
+            background: linear-gradient(135deg, #fff, #b8c0ff);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
@@ -423,7 +418,7 @@
         }
 
         .discord-card .join-btn {
-            background: #8a4dff;
+            background: #5865F2;
             padding: 8px 18px;
             border-radius: 40px;
             font-weight: 600;
@@ -431,7 +426,7 @@
             display: flex;
             align-items: center;
             gap: 5px;
-            box-shadow: 0 0 15px #8a4dff;
+            box-shadow: 0 0 15px #5865F2;
             border: 1px solid rgba(255, 255, 255, 0.3);
         }
 
@@ -439,7 +434,7 @@
             font-size: 14px;
         }
 
-        /* عداد الزوار بنفسجي (للبقاء متناسقين) */
+        /* عداد الزوار */
         .visitor-counter {
             display: flex;
             align-items: center;
@@ -447,7 +442,7 @@
             gap: 10px;
             margin-top: 30px;
             margin-bottom: 10px;
-            color: rgba(255, 255, 255, 0.8);
+            color: rgba(255, 255, 255, 0.7);
             font-size: 16px;
             background: rgba(0, 0, 0, 0.3);
             padding: 10px 22px;
@@ -456,20 +451,20 @@
             margin-left: auto;
             margin-right: auto;
             backdrop-filter: blur(4px);
-            border: 1px solid #b266ff;
-            box-shadow: 0 5px 15px rgba(170, 85, 255, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
         }
 
         .visitor-counter i {
-            color: #d4a5ff;
+            color: #ffd966;
             font-size: 22px;
-            filter: drop-shadow(0 0 8px #b266ff);
+            filter: drop-shadow(0 0 8px gold);
         }
 
         .counter-number {
             font-weight: 700;
             font-size: 22px;
-            background: linear-gradient(135deg, #fff, #e5b3ff);
+            background: linear-gradient(135deg, #fff, #ffe484);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             direction: ltr;
@@ -493,6 +488,7 @@
         @media (max-width: 480px) {
             .container { padding: 36px 20px; }
             .username { font-size: 28px; }
+            .welcome-message { font-size: 22px; }
             .link-item { padding: 16px 20px; font-size: 16px; }
             .link-item i { font-size: 24px; width: 28px; }
             .avatar img { width: 110px; height: 110px; }
@@ -503,7 +499,6 @@
             .discord-card { padding: 16px 20px; }
             .discord-card .info i { font-size: 32px; }
             .discord-card .info .text .title { font-size: 18px; }
-            .welcome-message { font-size: 22px; }
             .visitor-counter { font-size: 14px; padding: 8px 16px; }
             .counter-number { font-size: 18px; }
         }
@@ -528,15 +523,15 @@
             <button class="copy-btn" id="copyUrlBtn"><i class="far fa-copy"></i> نسخ الرابط</button>
         </div>
 
-        <!-- الصورة الشخصية (مع تأثير التلاشي) -->
-        <div class="avatar" id="avatarContainer">
-            <img id="profileImage" src="https://cdn.discordapp.com/attachments/1260678251399872625/1471616779519266877/017427e26e3e5ef9a539dcb9a776f682.png?ex=698f956d&is=698e43ed&hm=03ea2b7712b54f887f6485d41a1f51a5f9b3a48211301cc3c33c249ab4c77c2b&" alt="صورة عبود">
+        <!-- الصورة الشخصية المتغيرة -->
+        <div class="avatar">
+            <img id="profileImage" src="https://cdn.discordapp.com/attachments/1465544544023085301/1472196428347473951/image.png?ex=6991b144&is=69905fc4&hm=1f0ac0b4ac15df1ee0a0a0d76d66da67b2231f147fc38e0840ddd8dbb8bfeeee&" alt="صورة عبود">
         </div>
 
         <!-- الاسم -->
         <h1 class="username">عبود</h1>
 
-        <!-- رسالة ترحيب بنفسجية فخمة -->
+        <!-- رسالة ترحيب متحركة - Welcome to my world بالبنفسجي -->
         <div class="welcome-message">
             Welcome to my world
         </div>
@@ -546,7 +541,7 @@
             جميع روابطي الاجتماعية هنا ⬇️
         </div>
 
-        <!-- قائمة الروابط -->
+        <!-- قائمة الروابط (تم إزالة الديسكورد من هنا) -->
         <div class="links-list">
             <a href="https://instagram.com/its_vilaosk" target="_blank" rel="noopener noreferrer" class="link-item">
                 <i class="fab fa-instagram"></i> 
@@ -588,7 +583,7 @@
             <span class="counter-number" id="visitorCount">...</span>
         </div>
 
-        <!-- الفوتر -->
+        <!-- الفوتر: @vilaosk نص بدون رابط -->
         <div class="footer-note">
             <span>@vilaosk</span> • كل الروابط في مكان واحد
         </div>
@@ -601,6 +596,77 @@
     </audio>
 
     <script>
+        // روابط الصور الثلاثة المقدمة من المستخدم
+        const images = [
+            "https://cdn.discordapp.com/attachments/1465544544023085301/1472196428347473951/image.png?ex=6991b144&is=69905fc4&hm=1f0ac0b4ac15df1ee0a0a0d76d66da67b2231f147fc38e0840ddd8dbb8bfeeee&",
+            "https://cdn.discordapp.com/attachments/1465544544023085301/1472196478335451207/image.png?ex=6991b150&is=69905fd0&hm=c05d3227e579f991c5c1a0310a38d95a1b27b4719662adcd37e4c0f60d58a0c2&",
+            "https://cdn.discordapp.com/attachments/1465544544023085301/1472196547629416580/628219077_18042321359719077_2741092333663105732_n.png?ex=6991b161&is=69905fe1&hm=738030fd1335c1e9fbe65d2b5fb4432cd44d27ffb94b4e1e30789278bc55085d&"
+        ];
+
+        let currentIndex = 0;
+        let imageLoadTimeout;
+        const profileImage = document.getElementById('profileImage');
+
+        // دالة تغيير الصورة مع معالجة الأخطاء
+        function changeImage() {
+            // إلغاء أي مهلة سابقة
+            clearTimeout(imageLoadTimeout);
+
+            // بدء التلاشي للخارج
+            profileImage.style.opacity = '0';
+
+            // تعيين مؤقت لتغيير المصدر بعد أن يختفي الأثر
+            setTimeout(() => {
+                // تحديث المؤشر للصورة التالية
+                currentIndex = (currentIndex + 1) % images.length;
+
+                // تعيين دالة عند نجاح التحميل
+                profileImage.onload = function() {
+                    clearTimeout(imageLoadTimeout);
+                    profileImage.style.opacity = '1';
+                };
+
+                // تعيين دالة عند فشل التحميل
+                profileImage.onerror = function() {
+                    clearTimeout(imageLoadTimeout);
+                    console.warn('فشل تحميل الصورة، التبديل إلى التالية');
+                    // محاولة تحميل الصورة التالية مباشرة
+                    currentIndex = (currentIndex + 1) % images.length;
+                    profileImage.src = images[currentIndex];
+                };
+
+                // تغيير مصدر الصورة
+                profileImage.src = images[currentIndex];
+
+                // مهلة أمان: إذا لم تتحمل الصورة خلال 5 ثوان، اعتبرها فاشلة
+                imageLoadTimeout = setTimeout(() => {
+                    console.warn('انتهت مهلة تحميل الصورة');
+                    profileImage.onerror(); // استدعاء onerror يدوياً
+                }, 5000);
+
+            }, 400); // نفس مدة الـ transition
+        }
+
+        // بدء التبديل التلقائي كل 3 ثوان
+        setInterval(changeImage, 3000);
+
+        // تأكد من ظهور الصورة الأولى عند تحميل الصفحة
+        window.addEventListener('load', function() {
+            if (profileImage.complete) {
+                profileImage.style.opacity = '1';
+            } else {
+                profileImage.onload = function() {
+                    profileImage.style.opacity = '1';
+                };
+                profileImage.onerror = function() {
+                    console.warn('فشل تحميل الصورة الأولى، التبديل إلى التالية');
+                    currentIndex = (currentIndex + 1) % images.length;
+                    profileImage.src = images[currentIndex];
+                };
+            }
+        });
+
+        // كود الموسيقى والعداد والمشاركة
         const audio = document.getElementById('bgMusic');
         const playPauseBtn = document.getElementById('playPauseBtn');
         const playPauseIcon = document.getElementById('playPauseIcon');
@@ -609,70 +675,6 @@
         const pageUrlDiv = document.getElementById('pageUrl');
         const copyUrlBtn = document.getElementById('copyUrlBtn');
         const visitorSpan = document.getElementById('visitorCount');
-        const profileImg = document.getElementById('profileImage');
-        const avatarContainer = document.getElementById('avatarContainer');
-        const avatarGlow = document.querySelector('.avatar::before'); // لا يمكن تحديده مباشرة، سنستخدم عنصر وهمي أو نعدل style
-
-        // مصفوفة الصور الثلاث
-        const images = [
-            'https://cdn.discordapp.com/attachments/1260678251399872625/1471616779519266877/017427e26e3e5ef9a539dcb9a776f682.png?ex=698f956d&is=698e43ed&hm=03ea2b7712b54f887f6485d41a1f51a5f9b3a48211301cc3c33c249ab4c77c2b&',
-            'https://cdn.discordapp.com/attachments/1310975664605626408/1471616317294641262/628219077_18042321359719077_2741092333663105732_n.jpg?ex=69903dbf&is=698eec3f&hm=2fc0678b4a7b5da9b910c1d0039484cdced70934380eafa3945700e47b9d0bc5&',
-            'https://media.discordapp.net/attachments/1432721303114092555/1455969336891019284/608196250_18038481122719077_1933963348953108308_n.jpg?ex=699001dc&is=698eb05c&hm=278d826685514a10923322860d566906f31c24016a19f7f5a434b0261378883f&=&format=webp'
-        ];
-
-        // ألوان التوهج المخصصة لكل صورة (بدرجات متناسقة)
-        const glowColors = [
-            'linear-gradient(45deg, #ff99cc, #ff66b2, #ff3388, #ff99cc)', // زهري/بنفسجي للصورة الأولى
-            'linear-gradient(45deg, #ffd966, #ffb347, #ff8c42, #ffd966)', // ذهبي/برتقالي للثانية
-            'linear-gradient(45deg, #99ccff, #66b2ff, #3388ff, #99ccff)'  // أزرق/بنفسجي للثالثة
-        ];
-
-        let currentIndex = 0;
-
-        // دالة لتحديث لون التوهج
-        function updateGlowColor(index) {
-            // نغير خاصية background للعنصر الوهمي ::before عبر تعديل style للعنصر الأب
-            // لكن لا يمكن تحديد pseudo-element مباشرة بالجافاسكربت، لذا سنضيف style ديناميكي
-            const style = document.createElement('style');
-            style.id = 'dynamic-glow-style';
-            // نمسك أي ستايل سابق ونحذفه
-            const oldStyle = document.getElementById('dynamic-glow-style');
-            if (oldStyle) oldStyle.remove();
-            
-            style.innerHTML = `
-                .avatar::before {
-                    background: ${glowColors[index]} !important;
-                    background-size: 300% 300% !important;
-                }
-            `;
-            document.head.appendChild(style);
-        }
-
-        // دالة تغيير الصورة بتأثير تلاشي
-        function changeImageWithFade() {
-            // إضافة كلاس fade-out لتقليل الشفافية
-            profileImg.classList.add('fade-out');
-
-            setTimeout(() => {
-                // تغيير المصدر بعد أن تبدأ الشفافية بالتلاشي
-                currentIndex = (currentIndex + 1) % images.length;
-                profileImg.src = images[currentIndex];
-
-                // تحديث لون التوهج حسب الصورة الجديدة
-                updateGlowColor(currentIndex);
-
-                // بعد تحميل الصورة الجديدة، إزالة كلاس fade-out لتعود opacity إلى 1
-                profileImg.onload = () => {
-                    profileImg.classList.remove('fade-out');
-                };
-            }, 400); // نصف مدة الانتقال (0.8s/2 = 0.4s) لجعل التغيير في منتصف التلاشي
-        }
-
-        // بدء التغيير الدوري كل 3 ثواني
-        setInterval(changeImageWithFade, 3000);
-
-        // تعيين اللون الأولي للصورة الأولى
-        updateGlowColor(0);
 
         // تشغيل/إيقاف الموسيقى
         playPauseBtn.addEventListener('click', function() {

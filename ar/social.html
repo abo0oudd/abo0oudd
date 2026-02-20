@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vilaosk • مواقع التواصل</title>
+    <link rel="stylesheet" href="../style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* الأنماط الخاصة بصفحة التواصل */
+        .social-container {
+            max-width: 620px;
+            margin: 0 auto;
+            background: rgba(10, 10, 10, 0.65);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border-radius: 56px 56px 40px 40px;
+            padding: 44px 28px;
+            box-shadow: 0 35px 60px -15px rgba(0, 0, 0, 0.9),
+                        0 0 0 1px rgba(255, 255, 255, 0.07) inset,
+                        0 0 30px rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            transition: all 0.3s ease;
+            animation: float 8s infinite alternate ease-in-out;
+            position: relative;
+            margin-top: 30px;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            100% { transform: translateY(-8px); }
+        }
+
+        .links-list {
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+            margin-bottom: 30px;
+            margin-top: 20px;
+        }
+
+        .link-item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.06);
+            backdrop-filter: blur(8px);
+            padding: 18px 26px;
+            border-radius: 120px;
+            text-decoration: none;
+            color: white;
+            font-weight: 600;
+            font-size: 18px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            transition: all 0.3s cubic-bezier(0.2, 0.9, 0.3, 1.1);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+            gap: 16px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .link-item::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.15), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .link-item:hover::after {
+            left: 100%;
+        }
+
+        .link-item i {
+            font-size: 28px;
+            width: 32px;
+            text-align: center;
+            transition: transform 0.2s ease;
+            filter: drop-shadow(0 0 8px currentColor);
+        }
+
+        .fa-instagram { color: #f56040; background: linear-gradient(45deg, #f09433, #d62976); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .fa-tiktok { color: #ff0050; text-shadow: 0 0 10px #00f2ea; }
+        .fa-youtube { color: #ff0000; text-shadow: 0 0 10px #ff4d4d; }
+        .fa-k { color: #4CAF50; text-shadow: 0 0 15px #00ff80; }
+
+        .link-item:hover {
+            background: rgba(255, 255, 255, 0.18);
+            transform: scale(1.05) translateY(-3px);
+            border-color: rgba(255, 255, 255, 0.3);
+            box-shadow: 0 20px 30px -8px black, 0 0 20px rgba(255, 255, 255, 0.2);
+        }
+
+        .link-item:hover i {
+            transform: scale(1.2) rotate(3deg);
+        }
+
+        .discord-card {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: linear-gradient(145deg, rgba(88, 101, 242, 0.2), rgba(55, 65, 180, 0.3));
+            backdrop-filter: blur(8px);
+            padding: 20px 28px;
+            border-radius: 40px;
+            border: 1px solid rgba(114, 137, 218, 0.5);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6), 0 0 30px rgba(114, 137, 218, 0.4);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            text-decoration: none;
+            color: white;
+            margin-bottom: 18px;
+        }
+
+        .discord-card:hover {
+            transform: scale(1.02) translateY(-3px);
+            border-color: #7289da;
+            box-shadow: 0 20px 30px -5px black, 0 0 40px #7289da;
+        }
+
+        .discord-card .info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .discord-card .info i {
+            font-size: 42px;
+            color: #7289da;
+            filter: drop-shadow(0 0 15px #7289da);
+        }
+
+        .discord-card .info .text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .discord-card .info .text .title {
+            font-size: 20px;
+            font-weight: 700;
+            background: linear-gradient(135deg, #fff, #b8c0ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .discord-card .info .text .subtitle {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .discord-card .join-btn {
+            background: #5865F2;
+            padding: 8px 18px;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 15px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            box-shadow: 0 0 15px #5865F2;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .footer-note {
+            text-align: center;
+            margin-top: 20px;
+            color: rgba(255, 255, 255, 0.45);
+            font-size: 14px;
+        }
+
+        .footer-note span {
+            color: rgba(255, 255, 255, 0.75);
+            font-weight: 500;
+            border-bottom: 1px dotted rgba(255, 255, 255, 0.3);
+        }
+
+        @media (max-width: 480px) {
+            .social-container { padding: 36px 20px; }
+            .link-item { padding: 16px 20px; font-size: 16px; }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="container nav-container">
+            <div style="display: flex; align-items: center; gap: 15px; flex-wrap: wrap;">
+                <!-- تمت إزالة أزرار التحكم -->
+                <div class="visitor-counter" id="visitorCounter">
+                    <i class="fas fa-eye"></i>
+                    <span>الزوار:</span>
+                    <span class="counter-number" id="visitorCount">...</span>
+                </div>
+                <div class="logo">
+                    <a href="index.html">vilaosk</a>
+                </div>
+            </div>
+            <div class="nav-links">
+                <a href="index.html">الرئيسية</a>
+                <a href="social.html" class="active">مواقع التواصل</a>
+            </div>
+            <div class="lang">
+                <a href="../en/social.html">EN</a>
+            </div>
+            <!-- تمت إزالة نافذة المشاركة -->
+        </div>
+    </nav>
+
+    <main>
+        <div class="container">
+            <div class="social-container">
+                <div class="links-list">
+                    <a href="https://instagram.com/its_vilaosk" target="_blank" class="link-item">
+                        <i class="fab fa-instagram"></i> انستقرام @its_vilaosk
+                    </a>
+                    <a href="https://tiktok.com/@vilaosk" target="_blank" class="link-item">
+                        <i class="fab fa-tiktok"></i> تيك توك @vilaosk
+                    </a>
+                    <a href="https://youtube.com/@vilaosk_0?si=jkJkQwyB1pLsJLlr" target="_blank" class="link-item">
+                        <i class="fab fa-youtube"></i> يوتيوب - اشترك الآن
+                    </a>
+                    <a href="https://kick.com/vilaosk" target="_blank" class="link-item">
+                        <i class="fas fa-k"></i> كيك - تابعني على Kick
+                    </a>
+                </div>
+
+                <a href="https://discord.gg/HQXUq6WKcp" target="_blank" class="discord-card">
+                    <div class="info">
+                        <i class="fab fa-discord"></i>
+                        <div class="text">
+                            <span class="title">الانضمام إلى الديسكورد</span>
+                            <span class="subtitle">تواصل مع المجتمع المميز</span>
+                        </div>
+                    </div>
+                    <div class="join-btn">
+                        <span>إنضم</span>
+                        <i class="fas fa-arrow-left"></i>
+                    </div>
+                </a>
+
+                <div class="footer-note">
+                    <span>@vilaosk</span> • كل الروابط في مكان واحد
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>صنع بواسطة عبود • vilaosk</p>
+        </div>
+    </footer>
+
+    <script>
+        // عداد الزوار فقط
+        async function updateVisitorCounter() {
+            try {
+                const response = await fetch('https://api.countapi.xyz/hit/vilaosk-site/visits');
+                const data = await response.json();
+                document.getElementById('visitorCount').textContent = data.value.toLocaleString();
+            } catch (error) {
+                document.getElementById('visitorCount').textContent = '?';
+            }
+        }
+        updateVisitorCounter();
+    </script>
+</body>
+</html>

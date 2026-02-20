@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vilaosk • Home</title>
+    <link rel="stylesheet" href="../style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <nav>
+        <div class="container nav-container">
+            <div style="display: flex; align-items: center; gap: 15px;">
+                <div class="visitor-counter" id="visitorCounter">
+                    <i class="fas fa-eye"></i>
+                    <span>Visitors:</span>
+                    <span class="counter-number" id="visitorCount">...</span>
+                </div>
+                <div class="logo">
+                    <a href="index.html">vilaosk</a>
+                </div>
+            </div>
+            <div class="nav-links">
+                <a href="index.html" class="active">Home</a>
+                <a href="social.html">Social Media</a>
+            </div>
+            <div class="lang">
+                <a href="../ar/index.html">AR</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="home-main">
+        <div class="container">
+            <p class="greeting">Hello, I'm</p>
+            <h1 class="name">Abboud</h1>
+            <p class="title">YouTuber | Content Creator | Programmer</p>
+            <div class="bio-text">
+                <p>🚀 Passionate about content creation and technology, turning ideas into reality.</p>
+                <p>🎮 I create games, share knowledge, and aim to leave a mark on the world.</p>
+                <p>✨ My dream is big: I want to be famous and inspire millions.</p>
+                <p>⚡ Together we build a creative community.</p>
+            </div>
+            <a href="social.html" class="btn">Connect with me</a>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>Made by Abboud • vilaosk</p>
+        </div>
+    </footer>
+
+    <script>
+        async function updateVisitorCounter() {
+            try {
+                const response = await fetch('https://api.countapi.xyz/hit/vilaosk-site/visits');
+                const data = await response.json();
+                document.getElementById('visitorCount').textContent = data.value.toLocaleString();
+            } catch (error) {
+                document.getElementById('visitorCount').textContent = '?';
+            }
+        }
+        updateVisitorCounter();
+    </script>
+</body>
+</html>

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
-    <title>عبود • رابط السيرة </title>
+    <title>Aboud Official</title>
     <!-- Font Awesome للأيقونات -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
@@ -20,71 +20,20 @@
             justify-content: center;
             align-items: center;
             padding: 20px;
-            position: relative;
-            overflow-x: hidden;
             background: #050505;
         }
 
-        /* -------------- خلفية الدخان الجديدة -------------- */
-        .smoke-background {
+        /* خلفية ناعمة وخفيفة - أداء محسن */
+        body::before {
+            content: '';
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            z-index: -1;
-            opacity: 0.4;
-        }
-
-        .smoke-background i {
-            position: absolute;
-            color: rgba(255, 255, 255, 0.1);
-            font-size: clamp(100px, 20vw, 400px);
-            animation: smoke 20s linear infinite;
-            user-select: none;
-        }
-
-        /* توزيع أيقونات الدخان */
-        .smoke-background i:nth-child(1) { top: 5%; left: 10%; animation-duration: 25s; animation-delay: -2s; }
-        .smoke-background i:nth-child(2) { top: 60%; left: 70%; font-size: 300px; animation-duration: 30s; animation-delay: -5s; }
-        .smoke-background i:nth-child(3) { top: 20%; left: 80%; font-size: 250px; animation-duration: 22s; animation-delay: -10s; }
-        .smoke-background i:nth-child(4) { top: 70%; left: 15%; font-size: 350px; animation-duration: 28s; animation-delay: -15s; }
-        .smoke-background i:nth-child(5) { top: 30%; left: 40%; font-size: 200px; animation-duration: 26s; animation-delay: -7s; }
-        .smoke-background i:nth-child(6) { top: 80%; left: 50%; font-size: 280px; animation-duration: 32s; animation-delay: -12s; }
-
-        @keyframes smoke {
-            0% {
-                transform: translate(0, 0) scale(1) rotate(0deg);
-                opacity: 0;
-            }
-            10% {
-                opacity: 0.2;
-            }
-            50% {
-                transform: translate(-5%, -10%) scale(1.2) rotate(5deg);
-                opacity: 0.3;
-            }
-            100% {
-                transform: translate(-10%, -20%) scale(1.5) rotate(10deg);
-                opacity: 0;
-            }
-        }
-        /* --------------------------------------------------- */
-
-        /* الخلفية القديمة مع الحفاظ عليها تحت الدخان */
-        body::before {
-            content: '';
-            position: fixed;
-            width: 150%;
-            height: 150%;
-            top: -25%;
-            left: -25%;
-            background: radial-gradient(circle at 20% 30%, rgba(255, 70, 150, 0.4) 0%, transparent 25%),
-                        radial-gradient(circle at 80% 70%, rgba(70, 130, 255, 0.5) 0%, transparent 30%),
-                        radial-gradient(circle at 40% 80%, rgba(255, 215, 0, 0.3) 0%, transparent 35%),
-                        radial-gradient(circle at 90% 20%, rgba(200, 0, 255, 0.35) 0%, transparent 28%);
-            filter: blur(60px);
-            animation: auraMove 25s infinite alternate ease-in-out;
+            background: radial-gradient(circle at 20% 30%, rgba(255, 70, 150, 0.3) 0%, transparent 40%),
+                        radial-gradient(circle at 80% 70%, rgba(70, 130, 255, 0.3) 0%, transparent 45%);
+            filter: blur(40px);
             z-index: -2;
         }
 
@@ -96,100 +45,24 @@
             width: 100%;
             height: 100%;
             background: rgba(0, 0, 0, 0.5);
-            backdrop-filter: blur(10px);
+            backdrop-filter: blur(8px);
             z-index: -1;
         }
 
-        @keyframes auraMove {
-            0% { transform: scale(1) rotate(0deg); filter: blur(60px) hue-rotate(0deg); }
-            50% { transform: scale(1.2) rotate(2deg); filter: blur(70px) hue-rotate(15deg); }
-            100% { transform: scale(1) rotate(-2deg); filter: blur(60px) hue-rotate(-15deg); }
-        }
-
-        /* ------------- شاشة البداية (الزر) ------------- */
-        .start-screen {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 100;
-            background: rgba(0, 0, 0, 0.7);
-            backdrop-filter: blur(8px);
-            transition: opacity 1s ease, visibility 1s ease;
-        }
-
-        .start-screen.hidden {
-            opacity: 0;
-            visibility: hidden;
-        }
-
-        .start-btn {
-            background: linear-gradient(45deg, #ff416c, #ff4b2b);
-            border: none;
-            border-radius: 60px;
-            padding: 22px 70px;
-            color: white;
-            font-size: 32px;
-            font-weight: 800;
-            letter-spacing: 3px;
-            cursor: pointer;
-            box-shadow: 0 0 30px rgba(255, 75, 43, 0.8), 0 0 60px rgba(255, 65, 108, 0.5);
-            border: 2px solid rgba(255, 255, 255, 0.3);
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-            text-transform: uppercase;
-            animation: pulse 2s infinite;
-        }
-
-        .start-btn:hover {
-            transform: scale(1.1);
-            box-shadow: 0 0 50px rgba(255, 75, 43, 1), 0 0 80px rgba(255, 65, 108, 0.7);
-        }
-
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-            100% { transform: scale(1); }
-        }
-        /* ------------------------------------------------ */
-
-        /* المحتوى الرئيسي (مخفي في البداية) */
-        .main-content {
-            opacity: 0;
-            transition: opacity 1.5s ease;
-            width: 100%;
-            display: flex;
-            justify-content: center;
-        }
-
-        .main-content.visible {
-            opacity: 1;
-        }
-
+        /* الحاوية الرئيسية - بدون حركة لتقليل إعادة الرسم */
         .container {
             max-width: 620px;
             width: 100%;
             margin: 0 auto;
             background: rgba(10, 10, 10, 0.65);
-            backdrop-filter: blur(14px);
-            -webkit-backdrop-filter: blur(14px);
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
             border-radius: 56px 56px 40px 40px;
             padding: 44px 28px;
-            box-shadow: 0 35px 60px -15px rgba(0, 0, 0, 0.9),
-                        0 0 0 1px rgba(255, 255, 255, 0.07) inset,
-                        0 0 30px rgba(255, 255, 255, 0.1);
+            box-shadow: 0 25px 40px -12px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(255, 255, 255, 0.07) inset;
             border: 1px solid rgba(255, 255, 255, 0.08);
-            transition: all 0.3s ease;
-            animation: float 8s infinite alternate ease-in-out;
+            transition: box-shadow 0.2s ease;
             position: relative;
-        }
-
-        @keyframes float {
-            0% { transform: translateY(0px); }
-            100% { transform: translateY(-8px); }
         }
 
         /* التحكمات (الموسيقى + المشاركة) */
@@ -215,19 +88,14 @@
             color: white;
             font-size: 22px;
             cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5), 0 0 15px rgba(255, 255, 255, 0.2);
+            transition: transform 0.2s ease, background 0.2s ease;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
         }
 
         .control-btn:hover {
-            transform: scale(1.15);
+            transform: scale(1.08);
             background: rgba(255, 255, 255, 0.25);
             border-color: rgba(255, 255, 255, 0.5);
-            box-shadow: 0 0 25px rgba(255, 255, 255, 0.3);
-        }
-
-        .control-btn i {
-            filter: drop-shadow(0 0 8px currentColor);
         }
 
         /* نافذة المشاركة المنبثقة */
@@ -235,23 +103,17 @@
             position: absolute;
             top: 80px;
             left: 20px;
-            background: rgba(20, 20, 20, 0.9);
-            backdrop-filter: blur(16px);
+            background: rgba(20, 20, 20, 0.95);
+            backdrop-filter: blur(12px);
             border: 1px solid rgba(255, 255, 255, 0.2);
             border-radius: 24px;
             padding: 18px 20px;
             width: 260px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6), 0 0 30px rgba(255, 255, 255, 0.1);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
             z-index: 20;
             display: none;
             flex-direction: column;
-            gap: 15px;
-            animation: popupFade 0.2s ease;
-        }
-
-        @keyframes popupFade {
-            from { opacity: 0; transform: translateY(-10px); }
-            to { opacity: 1; transform: translateY(0); }
+            gap: 12px;
         }
 
         .share-popup.show {
@@ -265,12 +127,12 @@
         }
 
         .share-popup .link-url {
-            background: rgba(0, 0, 0, 0.5);
+            background: rgba(0, 0, 0, 0.6);
             border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 30px;
-            padding: 12px 16px;
+            padding: 10px 14px;
             color: white;
-            font-size: 14px;
+            font-size: 13px;
             direction: ltr;
             text-align: left;
             word-break: break-all;
@@ -280,35 +142,30 @@
             background: linear-gradient(135deg, #667eea, #764ba2);
             border: none;
             border-radius: 30px;
-            padding: 12px;
+            padding: 10px;
             color: white;
             font-weight: 600;
-            font-size: 15px;
+            font-size: 14px;
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 8px;
             cursor: pointer;
             transition: all 0.2s ease;
-            border: 1px solid rgba(255, 255, 255, 0.2);
         }
 
         .share-popup .copy-btn:hover {
             transform: scale(1.02);
-            filter: brightness(1.2);
-            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.5);
+            filter: brightness(1.1);
         }
 
-        .share-popup .copy-btn i {
-            font-size: 16px;
-        }
-
+        /* صورة شخصية ثابتة - بدون تبديل */
         .avatar {
             display: flex;
             justify-content: center;
             margin-bottom: 24px;
             position: relative;
-            height: 150px;
+            height: 140px;
         }
 
         .avatar img {
@@ -316,16 +173,15 @@
             height: 130px;
             border-radius: 50%;
             object-fit: cover;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.8), 0 0 0 3px rgba(255, 255, 255, 0.2);
-            transition: opacity 0.4s ease-in-out;
+            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.7), 0 0 0 3px rgba(255, 255, 255, 0.15);
+            transition: transform 0.2s ease;
             position: absolute;
             top: 0;
             left: 50%;
             transform: translateX(-50%);
-            z-index: 2;
-            opacity: 1;
         }
 
+        /* هالة ثابتة خفيفة - بدل المتحركة الثقيلة */
         .avatar::before {
             content: '';
             position: absolute;
@@ -335,18 +191,10 @@
             width: 150px;
             height: 150px;
             border-radius: 50%;
-            background: linear-gradient(45deg, #ff3366, #33ccff, #ffcc00, #ff3366);
-            background-size: 300% 300%;
-            filter: blur(16px);
-            opacity: 0.8;
-            animation: glowRotate 6s infinite alternate linear;
-            z-index: 1;
-        }
-
-        @keyframes glowRotate {
-            0% { background-position: 0% 0%; transform: translate(-50%, -50%) scale(1); opacity: 0.7; }
-            50% { background-position: 100% 100%; transform: translate(-50%, -50%) scale(1.15); opacity: 1; }
-            100% { background-position: 0% 100%; transform: translate(-50%, -50%) scale(1); opacity: 0.7; }
+            background: linear-gradient(45deg, #ff3366, #33ccff, #ffcc00);
+            opacity: 0.25;
+            filter: blur(12px);
+            z-index: 0;
         }
 
         .username {
@@ -355,58 +203,42 @@
             font-weight: 800;
             text-align: center;
             margin-bottom: 8px;
-            letter-spacing: -0.5px;
-            text-shadow: 0 2px 10px rgba(255, 255, 255, 0.3);
             background: linear-gradient(135deg, #ffffff 0%, #e0e0e0 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
 
-        /* رسالة ترحيب متحركة */
+        /* رسالة ترحيب - بدون حركة لتخفيف الحمل */
         .welcome-message {
             text-align: center;
             margin: 15px 0 20px;
             font-size: 26px;
             font-weight: 800;
-            color: transparent;
             background: linear-gradient(135deg, #c084fc, #a855f7, #d8b4fe);
             -webkit-background-clip: text;
             background-clip: text;
-            background-size: 200% auto;
-            animation: shine 3s linear infinite, floatText 2s ease-in-out infinite alternate;
-            text-shadow: 0 0 20px rgba(168, 85, 247, 0.7);
-            letter-spacing: 1.5px;
+            color: transparent;
+            text-shadow: 0 0 12px rgba(168, 85, 247, 0.5);
+            letter-spacing: 1px;
             text-transform: uppercase;
-            transition: all 0.5s ease;
-        }
-
-        @keyframes shine {
-            0% { background-position: 0% center; }
-            100% { background-position: 200% center; }
-        }
-
-        @keyframes floatText {
-            from { transform: translateY(0); }
-            to { transform: translateY(-6px); }
         }
 
         .bio {
-            color: rgba(255, 255, 255, 0.8);
+            color: rgba(255, 255, 255, 0.85);
             text-align: center;
             font-size: 17px;
             margin-bottom: 30px;
             padding: 0 12px;
-            line-height: 1.7;
+            line-height: 1.6;
             font-weight: 400;
-            text-shadow: 0 1px 5px rgba(0,0,0,0.5);
         }
 
         .links-list {
             display: flex;
             flex-direction: column;
-            gap: 18px;
-            margin-bottom: 30px;
+            gap: 16px;
+            margin-bottom: 28px;
         }
 
         .link-item {
@@ -414,18 +246,16 @@
             align-items: center;
             justify-content: center;
             background: rgba(255, 255, 255, 0.06);
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
-            padding: 18px 26px;
+            backdrop-filter: blur(4px);
+            padding: 16px 22px;
             border-radius: 120px;
             text-decoration: none;
             color: white;
             font-weight: 600;
-            font-size: 18px;
+            font-size: 17px;
             border: 1px solid rgba(255, 255, 255, 0.08);
-            transition: all 0.3s cubic-bezier(0.2, 0.9, 0.3, 1.1);
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(255, 255, 255, 0.02) inset;
-            gap: 16px;
+            transition: all 0.2s ease;
+            gap: 14px;
             position: relative;
             overflow: hidden;
         }
@@ -437,8 +267,8 @@
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.15), transparent);
-            transition: left 0.6s ease;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transition: left 0.5s ease;
         }
 
         .link-item:hover::after {
@@ -446,70 +276,59 @@
         }
 
         .link-item i {
-            font-size: 28px;
-            width: 32px;
+            font-size: 26px;
+            width: 30px;
             text-align: center;
-            transition: transform 0.2s ease, filter 0.2s ease;
-            filter: drop-shadow(0 0 8px currentColor);
+            transition: transform 0.15s ease;
         }
 
-        .fa-instagram { color: #f56040; background: linear-gradient(45deg, #f09433, #d62976); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-        .fa-tiktok { color: #ff0050; text-shadow: 0 0 10px #00f2ea; }
-        .fa-youtube { color: #ff0000; text-shadow: 0 0 10px #ff4d4d; }
-        .fa-k { color: #4CAF50; text-shadow: 0 0 15px #00ff80; }
-
         .link-item:hover {
-            background: rgba(255, 255, 255, 0.18);
-            transform: scale(1.05) translateY(-3px);
-            border-color: rgba(255, 255, 255, 0.3);
-            box-shadow: 0 20px 30px -8px black, 0 0 20px rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.14);
+            transform: translateY(-2px);
+            border-color: rgba(255, 255, 255, 0.25);
         }
 
         .link-item:hover i {
-            transform: scale(1.2) rotate(3deg);
-            filter: drop-shadow(0 0 12px currentColor);
+            transform: scale(1.1);
         }
+
+        .fa-instagram { color: #f56040; background: linear-gradient(45deg, #f09433, #d62976); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .fa-tiktok { color: #ff0050; text-shadow: 0 0 6px #00f2ea; }
+        .fa-youtube { color: #ff0000; }
+        .fa-k { color: #4CAF50; }
 
         .discord-card {
             display: flex;
             align-items: center;
             justify-content: space-between;
             background: linear-gradient(145deg, rgba(88, 101, 242, 0.2), rgba(55, 65, 180, 0.3));
-            backdrop-filter: blur(8px);
-            padding: 20px 28px;
+            backdrop-filter: blur(6px);
+            padding: 18px 24px;
             border-radius: 40px;
             border: 1px solid rgba(114, 137, 218, 0.5);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6), 0 0 30px rgba(114, 137, 218, 0.4);
-            transition: all 0.3s ease;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+            transition: all 0.2s ease;
             cursor: pointer;
             text-decoration: none;
             color: white;
             margin-bottom: 18px;
-            position: relative;
-            overflow: hidden;
         }
 
         .discord-card:hover {
-            transform: scale(1.02) translateY(-3px);
+            transform: scale(1.01) translateY(-2px);
             border-color: #7289da;
-            box-shadow: 0 20px 30px -5px black, 0 0 40px #7289da;
+            box-shadow: 0 12px 24px -5px black;
         }
 
         .discord-card .info {
             display: flex;
             align-items: center;
-            gap: 15px;
+            gap: 14px;
         }
 
         .discord-card .info i {
-            font-size: 42px;
+            font-size: 38px;
             color: #7289da;
-            filter: drop-shadow(0 0 15px #7289da);
-        }
-
-        .discord-card .info .text {
-            display: flex;
-            flex-direction: column;
         }
 
         .discord-card .info .text .title {
@@ -521,25 +340,20 @@
         }
 
         .discord-card .info .text .subtitle {
-            font-size: 14px;
+            font-size: 13px;
             color: rgba(255, 255, 255, 0.7);
         }
 
         .discord-card .join-btn {
             background: #5865F2;
-            padding: 8px 18px;
+            padding: 6px 16px;
             border-radius: 40px;
             font-weight: 600;
-            font-size: 15px;
+            font-size: 14px;
             display: flex;
             align-items: center;
-            gap: 5px;
-            box-shadow: 0 0 15px #5865F2;
-            border: 1px solid rgba(255, 255, 255, 0.3);
-        }
-
-        .discord-card .join-btn i {
-            font-size: 14px;
+            gap: 6px;
+            box-shadow: 0 0 8px #5865F2;
         }
 
         .visitor-counter {
@@ -547,25 +361,23 @@
             align-items: center;
             justify-content: center;
             gap: 10px;
-            margin-top: 30px;
+            margin-top: 28px;
             margin-bottom: 10px;
-            color: rgba(255, 255, 255, 0.7);
-            font-size: 16px;
+            color: rgba(255, 255, 255, 0.75);
+            font-size: 15px;
             background: rgba(0, 0, 0, 0.3);
-            padding: 10px 22px;
+            padding: 8px 20px;
             border-radius: 50px;
             width: fit-content;
             margin-left: auto;
             margin-right: auto;
             backdrop-filter: blur(4px);
             border: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
         }
 
         .visitor-counter i {
             color: #ffd966;
-            font-size: 22px;
-            filter: drop-shadow(0 0 8px gold);
+            font-size: 20px;
         }
 
         .counter-number {
@@ -581,58 +393,40 @@
             text-align: center;
             margin-top: 20px;
             color: rgba(255, 255, 255, 0.45);
-            font-size: 14px;
-            font-weight: 300;
-            letter-spacing: 0.3px;
+            font-size: 13px;
         }
 
         .footer-note span {
-            color: rgba(255, 255, 255, 0.75);
+            color: rgba(255, 255, 255, 0.7);
             font-weight: 500;
-            border-bottom: 1px dotted rgba(255, 255, 255, 0.3);
         }
 
+        /* تحسينات للهواتف */
         @media (max-width: 480px) {
-            .container { padding: 36px 20px; }
+            .container { padding: 32px 18px; }
             .username { font-size: 28px; }
             .welcome-message { font-size: 22px; }
-            .link-item { padding: 16px 20px; font-size: 16px; }
-            .link-item i { font-size: 24px; width: 28px; }
+            .link-item { padding: 14px 18px; font-size: 15px; }
+            .link-item i { font-size: 22px; width: 26px; }
             .avatar img { width: 110px; height: 110px; }
             .avatar::before { width: 130px; height: 130px; }
-            .control-btn { width: 40px; height: 40px; font-size: 18px; }
-            .controls { top: 10px; left: 10px; gap: 8px; }
-            .share-popup { width: 220px; left: 10px; top: 70px; }
-            .discord-card { padding: 16px 20px; }
-            .discord-card .info i { font-size: 32px; }
-            .discord-card .info .text .title { font-size: 18px; }
-            .visitor-counter { font-size: 14px; padding: 8px 16px; }
+            .control-btn { width: 42px; height: 42px; font-size: 18px; }
+            .controls { top: 12px; left: 12px; gap: 8px; }
+            .share-popup { width: 210px; left: 12px; top: 70px; }
+            .discord-card { padding: 14px 18px; }
+            .discord-card .info i { font-size: 30px; }
+            .discord-card .info .text .title { font-size: 17px; }
+            .visitor-counter { font-size: 13px; padding: 6px 14px; }
             .counter-number { font-size: 18px; }
-            .start-btn { font-size: 24px; padding: 18px 40px; }
         }
     </style>
 </head>
 <body>
 
-    <!-- خلفية الدخان -->
-    <div class="smoke-background">
-        <i class="fas fa-smog"></i>
-        <i class="fas fa-smog"></i>
-        <i class="fas fa-smog"></i>
-        <i class="fas fa-smog"></i>
-        <i class="fas fa-smog"></i>
-        <i class="fas fa-smog"></i>
-    </div>
-
-    <!-- شاشة البداية مع الزر -->
-    <div class="start-screen" id="startScreen">
-        <button class="start-btn" id="startMissionBtn">ابدأ المهمة</button>
-    </div>
-
-    <!-- المحتوى الرئيسي -->
-    <div class="main-content" id="mainContent">
+    <!-- المحتوى الرئيسي يظهر فوراً (بدون شاشة بداية) -->
+    <div class="main-content">
         <div class="container">
-            <!-- أزرار التحكم (موسيقى + مشاركة) -->
+            <!-- أزرار التحكم -->
             <div class="controls">
                 <div class="control-btn" id="playPauseBtn">
                     <i class="fas fa-play" id="playPauseIcon"></i>
@@ -642,22 +436,20 @@
                 </div>
             </div>
 
-            <!-- نافذة المشاركة المنبثقة -->
+            <!-- نافذة المشاركة -->
             <div class="share-popup" id="sharePopup">
                 <div class="link-label">رابط الصفحة</div>
                 <div class="link-url" id="pageUrl">جاري تحميل الرابط...</div>
                 <button class="copy-btn" id="copyUrlBtn"><i class="far fa-copy"></i> نسخ الرابط</button>
             </div>
 
-            <!-- الصورة الشخصية المتغيرة -->
+            <!-- الصورة الشخصية (ثابتة) -->
             <div class="avatar">
-                <img id="profileImage" src="https://cdn.discordapp.com/attachments/1465544544023085301/1472196428347473951/image.png?ex=6991b144&is=69905fc4&hm=1f0ac0b4ac15df1ee0a0a0d76d66da67b2231f147fc38e0840ddd8dbb8bfeeee&" alt="صورة عبود">
+                <img id="profileImage" src="https://media.discordapp.net/attachments/1491508947239047252/1503189076831109212/3530c8c36959019f81c93865290b5e56tplv-tiktokx-cropcenter10801080.png?ex=6a02716b&is=6a011feb&hm=a2bb7b517cd1c73b476c78c4bb0f96db85a7a9a52951acb3774baf3dea8496be&=&format=webp&quality=lossless&width=534&height=534" alt="صورة عبود">
             </div>
 
-            <!-- الاسم -->
             <h1 class="username">عبود</h1>
 
-            <!-- رسالة ترحيب متحركة -->
             <div class="welcome-message" id="welcomeMessage">
                 Welcome, honey...
             </div>
@@ -671,11 +463,11 @@
             <div class="links-list">
                 <a href="https://instagram.com/its_vilaosk" target="_blank" rel="noopener noreferrer" class="link-item">
                     <i class="fab fa-instagram"></i> 
-                    انستقرام @its_vilaosk
+                    انستقرام @abo0oudd
                 </a>
                 <a href="https://tiktok.com/@vilaosk" target="_blank" rel="noopener noreferrer" class="link-item">
                     <i class="fab fa-tiktok"></i> 
-                    تيك توك @vilaosk
+                    تيك توك @abo0oudd
                 </a>
                 <a href="https://youtube.com/@vilaosk_0?si=jkJkQwyB1pLsJLlr" target="_blank" rel="noopener noreferrer" class="link-item">
                     <i class="fab fa-youtube"></i> 
@@ -687,7 +479,7 @@
                 </a>
             </div>
 
-            <!-- بطاقة الديسكورد المميزة -->
+            <!-- بطاقة الديسكورد -->
             <a href="https://discord.gg/HQXUq6WKcp" target="_blank" rel="noopener noreferrer" class="discord-card">
                 <div class="info">
                     <i class="fab fa-discord"></i>
@@ -709,43 +501,24 @@
                 <span class="counter-number" id="visitorCount">...</span>
             </div>
 
-            <!-- الفوتر -->
             <div class="footer-note">
-                <span>@vilaosk</span> • كل الروابط في مكان واحد
+                <span>@abo0oudd</span> • كل الروابط في مكان واحد
             </div>
         </div>
     </div>
 
     <!-- عناصر الصوت -->
     <audio id="bgMusic" loop preload="auto">
-        <!-- موسيقى هادئة من Pixabay -->
-        <source src="https://cdn.discordapp.com/attachments/1260678251399872625/1471826599186927689/AmrDiab_-_Tamally_Maak_Official_Music_Video_-_.mp3?ex=69acb116&is=69ab5f96&hm=0a0351f83b938e6647fe7d2f7acb733103f319845982a99fdb54cef2a067bc2b&">
-        متصفحك لا يدعم مشغل الصوت.
-    </audio>
-
-    <audio id="startSound" preload="auto">
-        <!-- صوت بدء المهمة (اختر صوتاً مناسباً) -->
-        <source src="https://www.soundjay.com/misc/sounds/bell-ringing-05.mp3">
+        <source src="https://cdn.discordapp.com/attachments/1491508947239047252/1503192253483454545/AmrDiab_-_Tamally_Maak_Official_Music_Video_-_.mp3?ex=6a027461&is=6a0122e1&hm=572c785a93300dd89410856b52d034b011cca7d43e9bde77936c067bbfb7818a&">
     </audio>
 
     <audio id="clickSound" preload="auto">
-        <!-- صوت عند الضغط على الروابط -->
         <source src="https://www.soundjay.com/buttons/button-09a.mp3">
     </audio>
 
     <script>
-        // روابط الصور الثلاثة
-        const images = [
-            "https://scontent.xx.fbcdn.net/v/t1.15752-9/637051502_1952310218656037_4864861568054090102_n.png?stp=dst-png_s960x960&_nc_cat=102&ccb=1-7&_nc_sid=9f807c&_nc_ohc=J545iMNJLDYQ7kNvwF_hk01&_nc_oc=AdmAXjlLg_zay_MF7r5aOLbOD7pHjh78ejEAnQsnNv0LGBW1SSort1CjLDyZYyIYwA6T-l8zOjy33ww75RIEGOlK&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent.xx&oh=03_Q7cD4gEZE2ZCTO46-i1c8lDTHfuSePRKAp5keQ_48H8aFXgRSA&oe=69BBE9F4",
-            "https://scontent.xx.fbcdn.net/v/t1.15752-9/635119856_1609493076858923_6570785209913572054_n.png?_nc_cat=102&ccb=1-7&_nc_sid=9f807c&_nc_ohc=W0RUNQiSrpEQ7kNvwGqeFF5&_nc_oc=AdnTgWDSI4GhFcyhHjtZFTyZvJc4HmowXIeZ9l2uhlCmsMth7khbCsbJpWROR0gzZeKtX1I43d-OCSWCF-cyfUvX&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent.xx&oh=03_Q7cD4gGZmoL-p-NYU7PEsVcf576zbLh1GXfHSoETVB_dKdKJcQ&oe=69BBE398",
-            "https://scontent.xx.fbcdn.net/v/t1.15752-9/613354117_1394861062414615_4419819502904922321_n.png?stp=dst-png_s960x960&_nc_cat=101&ccb=1-7&_nc_sid=9f807c&_nc_ohc=_3WP0yDTgbwQ7kNvwE1XOU1&_nc_oc=Adme3MW3J7sG3G_GZFuRvZ5mIwHO2M40HFyFv4rtvXDH6Dcb4YadJosEWg-sAr9ZsjLJmJtDt_ye42o6WbDwa_Yj&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent.xx&oh=03_Q7cD4gHsSqcEcBq8qo24g--aDJNMfFCgwGhctbiixc_X36znmQ&oe=69BBE923"
-        ];
-
-        let currentIndex = 0;
-        let imageLoadTimeout;
-        const profileImage = document.getElementById('profileImage');
+        // عناصر التحكم
         const bgMusic = document.getElementById('bgMusic');
-        const startSound = document.getElementById('startSound');
         const clickSound = document.getElementById('clickSound');
         const playPauseBtn = document.getElementById('playPauseBtn');
         const playPauseIcon = document.getElementById('playPauseIcon');
@@ -754,120 +527,66 @@
         const pageUrlDiv = document.getElementById('pageUrl');
         const copyUrlBtn = document.getElementById('copyUrlBtn');
         const visitorSpan = document.getElementById('visitorCount');
-        const startScreen = document.getElementById('startScreen');
-        const mainContent = document.getElementById('mainContent');
-        const startMissionBtn = document.getElementById('startMissionBtn');
-        const welcomeMessage = document.getElementById('welcomeMessage');
 
-        // دالة تغيير الصورة
-        function changeImage() {
-            clearTimeout(imageLoadTimeout);
-            profileImage.style.opacity = '0';
-
-            setTimeout(() => {
-                currentIndex = (currentIndex + 1) % images.length;
-                profileImage.src = images[currentIndex];
-
-                profileImage.onload = function() {
-                    clearTimeout(imageLoadTimeout);
-                    profileImage.style.opacity = '1';
-                };
-
-                profileImage.onerror = function() {
-                    clearTimeout(imageLoadTimeout);
-                    console.warn('فشل تحميل الصورة، التبديل إلى التالية');
-                    currentIndex = (currentIndex + 1) % images.length;
-                    profileImage.src = images[currentIndex];
-                };
-
-                imageLoadTimeout = setTimeout(() => {
-                    console.warn('انتهت مهلة تحميل الصورة');
-                    profileImage.onerror();
-                }, 5000);
-
-            }, 400);
-        }
-
-        // بدء التبديل التلقائي بعد تحميل الصفحة
-        window.addEventListener('load', function() {
-            if (profileImage.complete) {
-                profileImage.style.opacity = '1';
+        // زر تشغيل/إيقاف الموسيقى
+        playPauseBtn.addEventListener('click', function() {
+            if (bgMusic.paused) {
+                bgMusic.play().catch(() => {});
+                playPauseIcon.classList.remove('fa-play');
+                playPauseIcon.classList.add('fa-pause');
+            } else {
+                bgMusic.pause();
+                playPauseIcon.classList.remove('fa-pause');
+                playPauseIcon.classList.add('fa-play');
             }
-            // بدء التغيير كل 3 ثواني بعد 3 ثواني من التحميل
-            setTimeout(() => {
-                setInterval(changeImage, 3000);
-            }, 3000);
         });
 
-                // زر بدء المهمة
-                startMissionBtn.addEventListener('click', function() {
-                    // تشغيل صوت البداية
-                    startSound.play().catch(e => console.log('لا يمكن تشغيل الصوت تلقائياً'));
-                    
-                    // تشغيل الموسيقى
-                    bgMusic.play().catch(e => console.log('لا يمكن تشغيل الموسيقى تلقائياً'));
-                    
-                    // تغيير أيقونة الموسيقى إلى إيقاف
-                    playPauseIcon.classList.remove('fa-play');
-                    playPauseIcon.classList.add('fa-pause');
-                    
-                    // إخفاء شاشة البداية
-                    startScreen.classList.add('hidden');
-                    // إظهار المحتوى الرئيسي
-                    mainContent.classList.add('visible');
-                });
-        
-                // زر تشغيل/إيقاف الموسيقى
-                playPauseBtn.addEventListener('click', function() {
-                    if (bgMusic.paused) {
-                        bgMusic.play().catch(() => {});
-                        playPauseIcon.classList.remove('fa-play');
-                        playPauseIcon.classList.add('fa-pause');
-                    } else {
-                        bgMusic.pause();
-                        playPauseIcon.classList.remove('fa-pause');
-                        playPauseIcon.classList.add('fa-play');
-                    }
-                });
-        
-                // زر المشاركة لإظهار/إخفاء نافذة المشاركة
-                shareBtn.addEventListener('click', function() {
-                    sharePopup.classList.toggle('show');
-                });
-        
-                // ضع رابط الصفحة في واجهة المشاركة
-                pageUrlDiv.textContent = window.location.href;
-        
-                // زر نسخ الرابط
-                copyUrlBtn.addEventListener('click', async function() {
-                    try {
-                        await navigator.clipboard.writeText(window.location.href);
-                        copyUrlBtn.textContent = 'تم النسخ';
-                        setTimeout(() => {
-                            copyUrlBtn.innerHTML = '<i class="far fa-copy"></i> نسخ الرابط';
-                        }, 2000);
-                    } catch (e) {
-                        copyUrlBtn.textContent = 'فشل النسخ';
-                        setTimeout(() => {
-                            copyUrlBtn.innerHTML = '<i class="far fa-copy"></i> نسخ الرابط';
-                        }, 2000);
-                    }
-                });
-        
-                // صوت عند النقر على الروابط
-                document.querySelectorAll('.link-item, .discord-card').forEach(el => {
-                    el.addEventListener('click', () => {
-                        clickSound.play().catch(() => {});
-                    });
-                });
-        
-                // عداد زوار بسيط باستخدام localStorage كحل مؤقت
-                (function updateVisitorCount() {
-                    const stored = Number(localStorage.getItem('visitorCount') || 0) || 0;
-                    const newCount = stored + 1;
-                    localStorage.setItem('visitorCount', newCount);
-                    visitorSpan.textContent = newCount.toLocaleString();
-                })();
-            </script>
-        </body>
-        </html>
+        // إظهار/إخفاء نافذة المشاركة
+        shareBtn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            sharePopup.classList.toggle('show');
+        });
+
+        // إخفاء النافذة عند النقر خارجها
+        document.addEventListener('click', function(e) {
+            if (!shareBtn.contains(e.target) && !sharePopup.contains(e.target)) {
+                sharePopup.classList.remove('show');
+            }
+        });
+
+        // عرض رابط الصفحة
+        pageUrlDiv.textContent = window.location.href;
+
+        // نسخ الرابط
+        copyUrlBtn.addEventListener('click', async function() {
+            try {
+                await navigator.clipboard.writeText(window.location.href);
+                copyUrlBtn.textContent = 'تم النسخ';
+                setTimeout(() => {
+                    copyUrlBtn.innerHTML = '<i class="far fa-copy"></i> نسخ الرابط';
+                }, 2000);
+            } catch (e) {
+                copyUrlBtn.textContent = 'فشل النسخ';
+                setTimeout(() => {
+                    copyUrlBtn.innerHTML = '<i class="far fa-copy"></i> نسخ الرابط';
+                }, 2000);
+            }
+        });
+
+        // صوت النقر على الروابط (بدون إزعاج)
+        document.querySelectorAll('.link-item, .discord-card').forEach(el => {
+            el.addEventListener('click', () => {
+                clickSound.play().catch(() => {});
+            });
+        });
+
+        // عداد الزوار - تخزين محلي بسيط
+        (function updateVisitorCount() {
+            let stored = localStorage.getItem('visitorCount');
+            let newCount = stored ? parseInt(stored, 10) + 1 : 1;
+            localStorage.setItem('visitorCount', newCount);
+            visitorSpan.textContent = newCount.toLocaleString();
+        })();
+    </script>
+</body>
+</html>

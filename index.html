@@ -14,7 +14,6 @@
             transition: background-color 0.3s ease, color 0.2s ease, border-color 0.2s ease;
         }
 
-        /* المتغيرات العامة (الوضع الفاتح) */
         :root {
             --bg-gradient-start: #f9f3e6;
             --bg-gradient-end: #fff5eb;
@@ -31,9 +30,10 @@
             --btn-hover-bg: #b87c4f;
             --btn-hover-color: white;
             --input-bg: white;
+            --achieved-color: #2ecc71;
+            --pending-color: #f39c12;
         }
 
-        /* الوضع الداكن - الوضع الافتراضي الآن */
         body.dark {
             --bg-gradient-start: #1a1a2e;
             --bg-gradient-end: #16213e;
@@ -50,6 +50,8 @@
             --btn-hover-bg: #ff8c5a;
             --btn-hover-color: #1a1a2e;
             --input-bg: #2a2a3a;
+            --achieved-color: #2ecc71;
+            --pending-color: #f39c12;
         }
 
         body {
@@ -71,7 +73,6 @@
             border: 1px solid var(--card-border);
             position: relative;
         }
-        /* أزرار التحكم (وضع ليلي + مشاركة) */
         .control-buttons {
             position: absolute;
             top: 20px;
@@ -99,7 +100,6 @@
             color: var(--btn-hover-color);
             transform: scale(1.05);
         }
-        /* رسالة منبثقة عند نسخ الرابط */
         .toast-msg {
             position: fixed;
             bottom: 30px;
@@ -209,25 +209,59 @@
             font-size: 0.9rem;
             color: var(--footer-color);
         }
-        .dream-list {
-            text-align: right;
-            margin-top: 15px;
-            padding-right: 20px;
+
+        /* تصميم جديد لقائمة الأهداف */
+        .dream-goals {
+            list-style: none;
+            padding: 0;
+            margin: 20px 0 10px;
         }
-        .dream-list li {
+        .dream-goals li {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 16px 20px;
             margin: 12px 0;
-            font-size: 0.95rem;
+            border-radius: 20px;
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            transition: 0.3s;
+            font-size: 1.1rem;
+            font-weight: 500;
             color: var(--text-color);
-            list-style-type: none;
-            position: relative;
         }
-        .dream-list li::before {
-            content: "🌟";
-            position: absolute;
-            right: -25px;
-            top: 0;
-            font-size: 1rem;
+        .dream-goals li:hover {
+            transform: translateX(-5px);
+            border-color: var(--accent-color);
         }
+        .goal-icon {
+            font-size: 1.8rem;
+            min-width: 45px;
+            text-align: center;
+        }
+        .goal-status {
+            margin-right: auto;
+            font-size: 1.2rem;
+            font-weight: 700;
+            padding: 4px 14px;
+            border-radius: 30px;
+            background: var(--btn-bg);
+            border: 1px solid var(--card-border);
+        }
+        .goal-status.achieved {
+            color: var(--achieved-color);
+            border-color: var(--achieved-color);
+            background: rgba(46, 204, 113, 0.15);
+        }
+        .goal-status.pending {
+            color: var(--pending-color);
+            border-color: var(--pending-color);
+            background: rgba(243, 156, 18, 0.15);
+        }
+        .goal-text {
+            flex: 1;
+        }
+
         .page-signature {
             text-align: center;
             margin: 20px 0 30px;
@@ -270,7 +304,6 @@
             border-top: 1px solid var(--card-border);
             color: var(--footer-color);
         }
-        /* نافذة من أنا */
         .modal-overlay {
             position: fixed;
             top: 0;
@@ -308,14 +341,8 @@
             color: var(--text-color);
         }
         @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
         }
         .modal-card h2 {
             font-size: 1.8rem;
@@ -350,6 +377,40 @@
             background: var(--accent-color);
             color: white;
         }
+        .modal-subtitle {
+            color: var(--footer-color);
+            font-size: 0.95rem;
+            margin-bottom: 20px;
+            padding: 10px 15px;
+            background: var(--info-bg);
+            border-radius: 16px;
+            border-right: 3px solid var(--accent-color);
+        }
+        .stats-summary {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 20px;
+            padding-top: 15px;
+            border-top: 1px solid var(--card-border);
+        }
+        .stats-summary span {
+            padding: 6px 18px;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+        .stats-achieved {
+            background: rgba(46, 204, 113, 0.2);
+            color: var(--achieved-color);
+            border: 1px solid var(--achieved-color);
+        }
+        .stats-pending {
+            background: rgba(243, 156, 18, 0.2);
+            color: var(--pending-color);
+            border: 1px solid var(--pending-color);
+        }
+
         @media (max-width: 600px) {
             .container { padding: 25px 20px; }
             .name { font-size: 2rem; }
@@ -361,15 +422,21 @@
             .page-signature { font-size: 1rem; }
             .control-buttons { top: 15px; left: 15px; }
             .ctrl-btn { width: 35px; height: 35px; font-size: 1rem; }
+            .dream-goals li {
+                flex-wrap: wrap;
+                gap: 10px;
+                padding: 14px 16px;
+                font-size: 0.95rem;
+            }
+            .goal-status { margin-right: 0; }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <!-- أزرار التحكم -->
         <div class="control-buttons">
             <div class="ctrl-btn" id="themeToggle" title="الوضع الليلي/النهاري">
-                <i class="fas fa-sun"></i> <!-- أيقونة شمس لأن الوضع الافتراضي داكن -->
+                <i class="fas fa-sun"></i>
             </div>
             <div class="ctrl-btn" id="sharePageBtn" title="مشاركة الصفحة">
                 <i class="fas fa-share-alt"></i>
@@ -408,7 +475,6 @@
             💬 "أبغا جمهور ولا عائلة؟ طبعاً عائلة." — عبود
         </div>
 
-        <!-- معلومات الاتصال -->
         <div class="info-row">
             <span class="info-item"><i class="fas fa-map-marker-alt"></i> الجزائر</span>
             <span class="info-item"><i class="fas fa-clock"></i> متاح للتواصل: طوال الوقت</span>
@@ -444,85 +510,142 @@
         </div>
     </div>
 
-    <!-- نافذة خريطة حلمي -->
+    <!-- نافذة خريطة حلمي - بتصميم جديد ومميز -->
     <div id="dreamModal" class="modal-overlay">
         <div class="modal-card">
             <div class="close-modal" id="closeDreamModalBtn">✕</div>
             <h2>🗺️ خريطة حلمي 2026</h2>
-            <ul class="dream-list">
-                <li>🎯 أوصل لـ <strong>10 آلاف أخ وأخت</strong> يتابعونني.</li>
-                <li>🏆 أوصل في فيديو لـ <strong>100 ألف لايك</strong> أو <strong>مليون مشاهدة</strong>.</li>
-                <li>🤝 أخلي <strong>يحيى مالك</strong> يتابعني (مصدر إلهامي الأول).</li>
-                <li>💡 أطور المحتوى بحيث <strong>فكرة لم تخطر على بال أحد</strong>.</li>
+            <div class="modal-subtitle">
+                🏆 رحلتي نحو تحقيق الأهداف — كل خطوة تقربني أكثر
+            </div>
+
+            <ul class="dream-goals">
+                <li>
+                    <span class="goal-icon">👥</span>
+                    <span class="goal-text">2,000 متابع</span>
+                    <span class="goal-status achieved">✅ تم</span>
+                </li>
+                <li>
+                    <span class="goal-icon">👥</span>
+                    <span class="goal-text">4,000 متابع</span>
+                    <span class="goal-status achieved">✅ تم</span>
+                </li>
+                <li>
+                    <span class="goal-icon">👥</span>
+                    <span class="goal-text">6,000 متابع</span>
+                    <span class="goal-status pending">⏳ قيد الإنجاز</span>
+                </li>
+                <li>
+                    <span class="goal-icon">👥</span>
+                    <span class="goal-text">8,000 متابع</span>
+                    <span class="goal-status pending">⏳ قيد الإنجاز</span>
+                </li>
+                <li>
+                    <span class="goal-icon">👥</span>
+                    <span class="goal-text">10,000 متابع</span>
+                    <span class="goal-status pending">⏳ قيد الإنجاز</span>
+                </li>
+                <li>
+                    <span class="goal-icon">🎬</span>
+                    <span class="goal-text">أول مليون مشاهدة</span>
+                    <span class="goal-status achieved">✅ تم</span>
+                </li>
+                <li>
+                    <span class="goal-icon">❤️</span>
+                    <span class="goal-text">أول 100 ألف لايك</span>
+                    <span class="goal-status pending">⏳ قيد الإنجاز</span>
+                </li>
+                <li>
+                    <span class="goal-icon">📢</span>
+                    <span class="goal-text">أول إعلان</span>
+                    <span class="goal-status pending">⏳ قيد الإنجاز</span>
+                </li>
             </ul>
+
+            <div class="stats-summary">
+                <span class="stats-achieved">✅ تم تحقيق 3</span>
+                <span class="stats-pending">⏳ متبقي 5</span>
+            </div>
         </div>
     </div>
 
     <div id="toastMsg" class="toast-msg">✅ تم نسخ الرابط!</div>
 
     <script>
-        // === 1. الوضع الليلي هو الافتراضي ===
-        // نضيف كلاس dark فوراً وأيقونة الشمس
-        document.body.classList.add('dark');
-        localStorage.setItem('theme', 'dark');
-        const themeToggle = document.getElementById('themeToggle');
-        themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+        document.addEventListener('DOMContentLoaded', function() {
+            // === 1. الوضع الليلي هو الافتراضي ===
+            document.body.classList.add('dark');
+            localStorage.setItem('theme', 'dark');
+            const themeToggle = document.getElementById('themeToggle');
+            themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
 
-        // زر تبديل الوضع
-        themeToggle.addEventListener('click', () => {
-            document.body.classList.toggle('dark');
-            if (document.body.classList.contains('dark')) {
-                localStorage.setItem('theme', 'dark');
-                themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
-            } else {
-                localStorage.setItem('theme', 'light');
-                themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
-            }
-        });
-
-        // === 2. مشاركة الصفحة (نسخ الرابط) ===
-        const shareBtn = document.getElementById('sharePageBtn');
-        const toast = document.getElementById('toastMsg');
-        shareBtn.addEventListener('click', () => {
-            const url = window.location.href;
-            navigator.clipboard.writeText(url).then(() => {
-                toast.classList.add('show');
-                setTimeout(() => {
-                    toast.classList.remove('show');
-                }, 2000);
-            }).catch(() => {
-                alert('تعذر نسخ الرابط، حاول يدوياً');
+            themeToggle.addEventListener('click', function() {
+                document.body.classList.toggle('dark');
+                if (document.body.classList.contains('dark')) {
+                    localStorage.setItem('theme', 'dark');
+                    themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+                } else {
+                    localStorage.setItem('theme', 'light');
+                    themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+                }
             });
-        });
 
-        // نافذة من أنا
-        const storyModal = document.getElementById('storyModal');
-        const aboutBtn = document.getElementById('aboutBtn');
-        const closeModalBtn = document.getElementById('closeModalBtn');
+            // === 2. مشاركة الصفحة ===
+            const shareBtn = document.getElementById('sharePageBtn');
+            const toast = document.getElementById('toastMsg');
+            shareBtn.addEventListener('click', function() {
+                const url = window.location.href;
+                if (navigator.clipboard) {
+                    navigator.clipboard.writeText(url).then(function() {
+                        toast.classList.add('show');
+                        setTimeout(function() {
+                            toast.classList.remove('show');
+                        }, 2000);
+                    }).catch(function() {
+                        alert('تعذر نسخ الرابط، حاول يدوياً');
+                    });
+                } else {
+                    alert('تعذر نسخ الرابط، حاول يدوياً');
+                }
+            });
 
-        aboutBtn.addEventListener('click', () => {
-            storyModal.classList.add('active');
-        });
-        closeModalBtn.addEventListener('click', () => {
-            storyModal.classList.remove('active');
-        });
+            // === 3. نافذة "من أنا؟" ===
+            const storyModal = document.getElementById('storyModal');
+            const aboutBtn = document.getElementById('aboutBtn');
+            const closeModalBtn = document.getElementById('closeModalBtn');
 
-        // نافذة خريطة حلمي
-        const dreamModal = document.getElementById('dreamModal');
-        const dreamMapBtn = document.getElementById('dreamMapBtn');
-        const closeDreamModalBtn = document.getElementById('closeDreamModalBtn');
+            aboutBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                storyModal.classList.add('active');
+            });
 
-        dreamMapBtn.addEventListener('click', () => {
-            dreamModal.classList.add('active');
-        });
-        closeDreamModalBtn.addEventListener('click', () => {
-            dreamModal.classList.remove('active');
-        });
+            closeModalBtn.addEventListener('click', function() {
+                storyModal.classList.remove('active');
+            });
 
-        // إغلاق النوافذ عند النقر خارج المحتوى
-        window.addEventListener('click', (e) => {
-            if (e.target === storyModal) storyModal.classList.remove('active');
-            if (e.target === dreamModal) dreamModal.classList.remove('active');
+            // === 4. نافذة "خريطة حلمي" ===
+            const dreamModal = document.getElementById('dreamModal');
+            const dreamMapBtn = document.getElementById('dreamMapBtn');
+            const closeDreamModalBtn = document.getElementById('closeDreamModalBtn');
+
+            dreamMapBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                dreamModal.classList.add('active');
+            });
+
+            closeDreamModalBtn.addEventListener('click', function() {
+                dreamModal.classList.remove('active');
+            });
+
+            // === 5. إغلاق النوافذ من الخارج ===
+            window.addEventListener('click', function(e) {
+                if (e.target === storyModal) {
+                    storyModal.classList.remove('active');
+                }
+                if (e.target === dreamModal) {
+                    dreamModal.classList.remove('active');
+                }
+            });
         });
     </script>
 </body>

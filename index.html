@@ -4,6 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
     <title>عبود • خريطة حلمي</title>
+
+    <!-- ===== Favicon ===== -->
+    <link rel="icon" href="favicon.png" type="image/png">
+
+    <!-- ===== Open Graph (معاينة المشاركة في واتساب/تويتر/ديسكورد...) ===== -->
+    <meta property="og:title" content="عبود • صانع محتوى">
+    <meta property="og:description" content="أبغا أرقام تخوف، وشهرة تخلي الكل يتكلم عني. تابع رحلتي وخريطة حلمي 2026.">
+    <meta property="og:image" content="https://i.postimg.cc/KcVqtCFL/image.png">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
@@ -100,6 +111,13 @@
             color: var(--btn-hover-color);
             transform: scale(1.05);
         }
+        .ctrl-btn:focus-visible,
+        .symbol-btn:focus-visible,
+        .section-card:focus-visible,
+        .contact-btn:focus-visible {
+            outline: 3px solid var(--accent-color);
+            outline-offset: 3px;
+        }
         .toast-msg {
             position: fixed;
             bottom: 30px;
@@ -131,6 +149,7 @@
             object-fit: cover;
             border: 4px solid var(--accent-color);
             box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            background: var(--card-bg);
         }
         .name {
             font-size: 2.8rem;
@@ -172,6 +191,11 @@
             background: var(--btn-hover-bg);
             color: var(--btn-hover-color);
         }
+        .symbol-btn.kick-btn {
+            font-weight: 800;
+            font-size: 20px;
+            font-style: normal;
+        }
         .sections-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -210,7 +234,7 @@
             color: var(--footer-color);
         }
 
-        /* تصميم جديد لقائمة الأهداف */
+        /* قائمة الأهداف */
         .dream-goals {
             list-style: none;
             padding: 0;
@@ -297,6 +321,38 @@
             width: 30px;
             text-align: center;
         }
+
+        /* أزرار تواصل آمنة بدل عرض الرقم كنص */
+        .contact-actions {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin: 25px 0 10px;
+        }
+        .contact-btn {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 22px;
+            border-radius: 40px;
+            background: var(--btn-bg);
+            border: 1px solid var(--card-border);
+            color: var(--text-color);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: 0.2s;
+        }
+        .contact-btn:hover {
+            background: var(--btn-hover-bg);
+            color: var(--btn-hover-color);
+            transform: translateY(-3px);
+        }
+        .contact-btn i {
+            font-size: 1.1rem;
+        }
+
         .footer-note {
             text-align: center;
             margin-top: 40px;
@@ -429,42 +485,47 @@
                 font-size: 0.95rem;
             }
             .goal-status { margin-right: 0; }
+            .contact-btn { width: 100%; justify-content: center; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            * { animation: none !important; transition: none !important; }
         }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="control-buttons">
-            <div class="ctrl-btn" id="themeToggle" title="الوضع الليلي/النهاري">
+            <div class="ctrl-btn" id="themeToggle" role="button" tabindex="0" aria-label="تبديل الوضع الليلي/النهاري" title="الوضع الليلي/النهاري">
                 <i class="fas fa-sun"></i>
             </div>
-            <div class="ctrl-btn" id="sharePageBtn" title="مشاركة الصفحة">
+            <div class="ctrl-btn" id="sharePageBtn" role="button" tabindex="0" aria-label="مشاركة الصفحة" title="مشاركة الصفحة">
                 <i class="fas fa-share-alt"></i>
             </div>
         </div>
 
         <div class="profile-img">
-            <img src="https://media.discordapp.net/attachments/1505156287837507584/1522039157856141312/Screenshot_2026-05-15_230207.png?ex=6a58d12d&is=6a577fad&hm=58184cc65aee6c8d6ef867ed0032ad244d992f7fd5884bc4886282d567d57640&=&format=webp&quality=lossless&width=265&height=265" alt="عبود">
+            <img src="https://i.postimg.cc/KcVqtCFL/image.png" alt="الصورة الشخصية لعبود">
         </div>
 
         <h1 class="name">عبود</h1>
         <div class="title">صانع محتوى</div>
 
         <div class="symbol-buttons">
-            <a href="https://instagram.com/abo0oudd" target="_blank" class="symbol-btn" title="انستقرام"><i class="fab fa-instagram"></i></a>
-            <a href="https://tiktok.com/@abo0oudd" target="_blank" class="symbol-btn" title="تيك توك"><i class="fab fa-tiktok"></i></a>
-            <a href="https://youtube.com/@abo0oudd?si=5fE-HF7bX-xhn2FG" target="_blank" class="symbol-btn" title="يوتيوب"><i class="fab fa-youtube"></i></a>
-            <a href="https://kick.com/abo0oudd" target="_blank" class="symbol-btn" title="كيك"><i class="fab fa-kickstarter"></i></a>
-            <a href="https://discord.gg/7Wp4pXuuRX" target="_blank" class="symbol-btn" title="ديسكورد"><i class="fab fa-discord"></i></a>
+            <a href="https://instagram.com/abo0oudd" target="_blank" rel="noopener noreferrer" class="symbol-btn" title="انستقرام" aria-label="انستقرام"><i class="fab fa-instagram"></i></a>
+            <a href="https://tiktok.com/@abo0oudd" target="_blank" rel="noopener noreferrer" class="symbol-btn" title="تيك توك" aria-label="تيك توك"><i class="fab fa-tiktok"></i></a>
+            <a href="https://youtube.com/@abo0oudd?si=5fE-HF7bX-xhn2FG" target="_blank" rel="noopener noreferrer" class="symbol-btn" title="يوتيوب" aria-label="يوتيوب"><i class="fab fa-youtube"></i></a>
+            <a href="https://kick.com/abo0oudd" target="_blank" rel="noopener noreferrer" class="symbol-btn kick-btn" title="كيك" aria-label="كيك">K</a>
+            <a href="https://discord.gg/7Wp4pXuuRX" target="_blank" rel="noopener noreferrer" class="symbol-btn" title="ديسكورد" aria-label="ديسكورد"><i class="fab fa-discord"></i></a>
         </div>
 
         <div class="sections-grid">
-            <div id="aboutBtn" class="section-card">
+            <div id="aboutBtn" class="section-card" role="button" tabindex="0">
                 <i class="fas fa-user-astronaut"></i>
                 <h3>من أنا؟</h3>
                 <p>قصة عبود وشغفه</p>
             </div>
-            <div id="dreamMapBtn" class="section-card">
+            <div id="dreamMapBtn" class="section-card" role="button" tabindex="0">
                 <i class="fas fa-map-marked-alt"></i>
                 <h3>خريطة حلمي</h3>
                 <p>أهداف 2026 وما بعد</p>
@@ -475,10 +536,19 @@
          أبغا أرقام تخوف، وشهرة تخلي الكل يتكلم عني.
         </div>
 
+        <!-- ===== أزرار تواصل آمنة بدل عرض الرقم كنص ===== -->
+        <div class="contact-actions">
+            <a href="https://wa.me/213552419065" target="_blank" rel="noopener noreferrer" class="contact-btn">
+                <i class="fab fa-whatsapp"></i> واتساب
+            </a>
+            <a href="mailto:contact@example.com" class="contact-btn">
+                <i class="fas fa-envelope"></i> إيميل
+            </a>
+        </div>
+
         <div class="info-row">
             <span class="info-item"><i class="fas fa-map-marker-alt"></i> الجزائر</span>
             <span class="info-item"><i class="fas fa-clock"></i> متاح للتواصل: طوال الوقت</span>
-            <span class="info-item"><i class="fas fa-envelope"></i> +213 552419065</span>
         </div>
 
         <div class="footer-note">
@@ -489,7 +559,7 @@
     <!-- نافذة من أنا -->
     <div id="storyModal" class="modal-overlay">
         <div class="modal-card">
-            <div class="close-modal" id="closeModalBtn">✕</div>
+            <div class="close-modal" id="closeModalBtn" role="button" tabindex="0" aria-label="إغلاق">✕</div>
             <h2>📖 قصة عبود</h2>
             <p>منذ 2016 وأنا أعشق صناعة المحتوى. أول مقطع سويته في ماين كرافت كان يشاهده 3 أشخاص فقط.. وكنت أسعد إنسان بالدنيا.</p>
             <p>ماكنت أعرف المونتاج، ولا الخوارزميات، ولا حتى "فيس كام". كنت طفل يحب يصور ويضحك، وهذا كل شيء.</p>
@@ -510,10 +580,10 @@
         </div>
     </div>
 
-    <!-- نافذة خريطة حلمي - بتصميم جديد ومميز -->
+    <!-- نافذة خريطة حلمي -->
     <div id="dreamModal" class="modal-overlay">
         <div class="modal-card">
-            <div class="close-modal" id="closeDreamModalBtn">✕</div>
+            <div class="close-modal" id="closeDreamModalBtn" role="button" tabindex="0" aria-label="إغلاق">✕</div>
             <h2>🗺️ خريطة حلمي 2026</h2>
             <div class="modal-subtitle">
                 🏆 رحلتي نحو تحقيق الأهداف — كل خطوة تقربني أكثر
@@ -574,44 +644,55 @@
         </div>
     </div>
 
-    <div id="toastMsg" class="toast-msg">✅ تم نسخ الرابط!</div>
+    <div id="toastMsg" class="toast-msg" role="status" aria-live="polite">✅ تم نسخ الرابط!</div>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // === 1. الوضع الليلي هو الافتراضي ===
-            document.body.classList.add('dark');
-            localStorage.setItem('theme', 'dark');
+            // === 1. الوضع الليلي/النهاري — يقرأ القيمة المحفوظة بدل ما يفرض الوضع الليلي دايماً ===
             const themeToggle = document.getElementById('themeToggle');
-            themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+            const savedTheme = localStorage.getItem('theme') || 'dark'; // الافتراضي: ليلي أول مرة فقط
 
-            themeToggle.addEventListener('click', function() {
-                document.body.classList.toggle('dark');
-                if (document.body.classList.contains('dark')) {
-                    localStorage.setItem('theme', 'dark');
+            function applyTheme(theme) {
+                if (theme === 'dark') {
+                    document.body.classList.add('dark');
                     themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
                 } else {
-                    localStorage.setItem('theme', 'light');
+                    document.body.classList.remove('dark');
                     themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
                 }
+            }
+            applyTheme(savedTheme);
+
+            function toggleTheme() {
+                const isDark = document.body.classList.contains('dark');
+                const newTheme = isDark ? 'light' : 'dark';
+                applyTheme(newTheme);
+                localStorage.setItem('theme', newTheme);
+            }
+            themeToggle.addEventListener('click', toggleTheme);
+            themeToggle.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggleTheme(); }
             });
 
             // === 2. مشاركة الصفحة ===
             const shareBtn = document.getElementById('sharePageBtn');
             const toast = document.getElementById('toastMsg');
-            shareBtn.addEventListener('click', function() {
+            function sharePage() {
                 const url = window.location.href;
                 if (navigator.clipboard) {
                     navigator.clipboard.writeText(url).then(function() {
                         toast.classList.add('show');
-                        setTimeout(function() {
-                            toast.classList.remove('show');
-                        }, 2000);
+                        setTimeout(function() { toast.classList.remove('show'); }, 2000);
                     }).catch(function() {
                         alert('تعذر نسخ الرابط، حاول يدوياً');
                     });
                 } else {
                     alert('تعذر نسخ الرابط، حاول يدوياً');
                 }
+            }
+            shareBtn.addEventListener('click', sharePage);
+            shareBtn.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); sharePage(); }
             });
 
             // === 3. نافذة "من أنا؟" ===
@@ -619,13 +700,16 @@
             const aboutBtn = document.getElementById('aboutBtn');
             const closeModalBtn = document.getElementById('closeModalBtn');
 
-            aboutBtn.addEventListener('click', function(e) {
-                e.preventDefault();
-                storyModal.classList.add('active');
-            });
+            function openStory(e) { e.preventDefault(); storyModal.classList.add('active'); }
+            function closeStory() { storyModal.classList.remove('active'); }
 
-            closeModalBtn.addEventListener('click', function() {
-                storyModal.classList.remove('active');
+            aboutBtn.addEventListener('click', openStory);
+            aboutBtn.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter' || e.key === ' ') { openStory(e); }
+            });
+            closeModalBtn.addEventListener('click', closeStory);
+            closeModalBtn.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter' || e.key === ' ') { closeStory(); }
             });
 
             // === 4. نافذة "خريطة حلمي" ===
@@ -633,23 +717,25 @@
             const dreamMapBtn = document.getElementById('dreamMapBtn');
             const closeDreamModalBtn = document.getElementById('closeDreamModalBtn');
 
-            dreamMapBtn.addEventListener('click', function(e) {
-                e.preventDefault();
-                dreamModal.classList.add('active');
+            function openDream(e) { e.preventDefault(); dreamModal.classList.add('active'); }
+            function closeDream() { dreamModal.classList.remove('active'); }
+
+            dreamMapBtn.addEventListener('click', openDream);
+            dreamMapBtn.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter' || e.key === ' ') { openDream(e); }
+            });
+            closeDreamModalBtn.addEventListener('click', closeDream);
+            closeDreamModalBtn.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter' || e.key === ' ') { closeDream(); }
             });
 
-            closeDreamModalBtn.addEventListener('click', function() {
-                dreamModal.classList.remove('active');
-            });
-
-            // === 5. إغلاق النوافذ من الخارج ===
+            // === 5. إغلاق النوافذ من الخارج أو بزر Escape ===
             window.addEventListener('click', function(e) {
-                if (e.target === storyModal) {
-                    storyModal.classList.remove('active');
-                }
-                if (e.target === dreamModal) {
-                    dreamModal.classList.remove('active');
-                }
+                if (e.target === storyModal) closeStory();
+                if (e.target === dreamModal) closeDream();
+            });
+            window.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') { closeStory(); closeDream(); }
             });
         });
     </script>

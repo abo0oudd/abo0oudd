@@ -4,17 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
     <title>عبود • خريطة حلمي</title>
-
+ 
     <!-- ===== Favicon ===== -->
     <link rel="icon" href="favicon.png" type="image/png">
-
+ 
     <!-- ===== Open Graph (معاينة المشاركة في واتساب/تويتر/ديسكورد...) ===== -->
     <meta property="og:title" content="عبود • صانع محتوى">
     <meta property="og:description" content="أبغا أرقام تخوف، وشهرة تخلي الكل يتكلم عني. تابع رحلتي وخريطة حلمي 2026.">
     <meta property="og:image" content="https://i.postimg.cc/KcVqtCFL/image.png">
     <meta property="og:type" content="website">
     <meta name="twitter:card" content="summary_large_image">
-
+ 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
@@ -24,7 +24,7 @@
             box-sizing: border-box;
             transition: background-color 0.3s ease, color 0.2s ease, border-color 0.2s ease;
         }
-
+ 
         :root {
             --bg-gradient-start: #f9f3e6;
             --bg-gradient-end: #fff5eb;
@@ -44,7 +44,7 @@
             --achieved-color: #2ecc71;
             --pending-color: #f39c12;
         }
-
+ 
         body.dark {
             --bg-gradient-start: #1a1a2e;
             --bg-gradient-end: #16213e;
@@ -64,7 +64,7 @@
             --achieved-color: #2ecc71;
             --pending-color: #f39c12;
         }
-
+ 
         body {
             font-family: 'Cairo', sans-serif;
             background: linear-gradient(135deg, var(--bg-gradient-start) 0%, var(--bg-gradient-end) 100%);
@@ -233,59 +233,221 @@
             font-size: 0.9rem;
             color: var(--footer-color);
         }
-
-        /* قائمة الأهداف */
-        .dream-goals {
-            list-style: none;
-            padding: 0;
-            margin: 20px 0 10px;
+ 
+        /* خريطة الأهداف - خريطة كنز حرفية احترافية */
+        .treasure-map {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 320 / 1100;
+            margin: 18px 0 10px;
+            border-radius: 28px;
+            overflow: hidden;
+            border: 2px solid var(--card-border);
+            box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.12), 0 15px 35px rgba(0, 0, 0, 0.1);
         }
-        .dream-goals li {
+        .treasure-map svg {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+        .treasure-map::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            z-index: 1;
+            pointer-events: none;
+            background: radial-gradient(ellipse at center, transparent 58%, rgba(0, 0, 0, 0.22) 100%);
+        }
+        .map-compass {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: var(--container-bg);
+            border: 1px solid var(--card-border);
             display: flex;
             align-items: center;
-            gap: 15px;
-            padding: 16px 20px;
-            margin: 12px 0;
-            border-radius: 20px;
-            background: var(--card-bg);
-            border: 1px solid var(--card-border);
-            transition: 0.3s;
-            font-size: 1.1rem;
-            font-weight: 500;
-            color: var(--text-color);
+            justify-content: center;
+            font-size: 16px;
+            z-index: 3;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
         }
-        .dream-goals li:hover {
-            transform: translateX(-5px);
-            border-color: var(--accent-color);
+        .map-pins {
+            position: absolute;
+            inset: 0;
+            z-index: 2;
         }
-        .goal-icon {
-            font-size: 1.8rem;
-            min-width: 45px;
-            text-align: center;
-        }
-        .goal-status {
-            margin-right: auto;
-            font-size: 1.2rem;
+        .map-waypoint-label {
+            position: absolute;
+            transform: translate(-50%, 0);
+            font-size: 0.78rem;
             font-weight: 700;
-            padding: 4px 14px;
-            border-radius: 30px;
+            color: var(--accent-color);
+            white-space: nowrap;
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+        }
+        .map-pin {
+            position: absolute;
+            transform: translate(-50%, -100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 92px;
+        }
+        .pin-shape {
+            position: relative;
+            width: 36px;
+            height: 36px;
+            border-radius: 50% 50% 50% 0;
+            transform: rotate(-45deg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid rgba(255, 255, 255, 0.55);
+            box-shadow: 0 5px 12px rgba(0, 0, 0, 0.3);
+            margin-bottom: 6px;
+            transition: transform 0.25s;
+        }
+        .map-pin:hover .pin-shape {
+            transform: rotate(-45deg) scale(1.12);
+        }
+        .pin-shape.achieved {
+            background: linear-gradient(135deg, var(--achieved-color), #219150);
+        }
+        .pin-shape.pending {
             background: var(--btn-bg);
+            border-color: var(--card-border);
+            filter: grayscale(0.4);
+            opacity: 0.85;
+        }
+        .pin-shape.next {
+            background: linear-gradient(135deg, var(--pending-color), #d35400);
+            animation: pinPulse 1.8s infinite;
+        }
+        @keyframes pinPulse {
+            0%, 100% { box-shadow: 0 5px 12px rgba(0,0,0,0.3), 0 0 0 0 rgba(243, 156, 18, 0.5); }
+            50% { box-shadow: 0 5px 12px rgba(0,0,0,0.3), 0 0 0 10px rgba(243, 156, 18, 0); }
+        }
+        .pin-emoji {
+            transform: rotate(45deg);
+            font-size: 16px;
+        }
+        .pin-check {
+            position: absolute;
+            top: -2px;
+            right: 14px;
+            width: 15px;
+            height: 15px;
+            background: var(--achieved-color);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.55rem;
+            border: 2px solid var(--container-bg);
+            z-index: 3;
+        }
+        .pin-number {
+            position: absolute;
+            top: -2px;
+            left: 14px;
+            width: 15px;
+            height: 15px;
+            background: var(--container-bg);
+            color: var(--accent-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.55rem;
+            font-weight: 800;
+            border: 1.5px solid var(--accent-color);
+            z-index: 3;
+        }
+        .pin-label {
+            background: var(--container-bg);
             border: 1px solid var(--card-border);
+            border-radius: 16px;
+            padding: 3px 9px;
+            font-size: 0.68rem;
+            font-weight: 700;
+            color: var(--text-color);
+            text-align: center;
+            white-space: nowrap;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
         }
-        .goal-status.achieved {
-            color: var(--achieved-color);
-            border-color: var(--achieved-color);
-            background: rgba(46, 204, 113, 0.15);
-        }
-        .goal-status.pending {
+        .pin-label.next-label {
             color: var(--pending-color);
             border-color: var(--pending-color);
-            background: rgba(243, 156, 18, 0.15);
         }
-        .goal-text {
-            flex: 1;
+        .map-waypoint-label.treasure {
+            font-size: 0.85rem;
         }
-
+ 
+        /* الكأس التفاعلي - الحلم الأكبر */
+        .treasure-spot {
+            position: absolute;
+            transform: translate(-50%, -50%);
+            width: 130px;
+            height: 130px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+        .treasure-icon {
+            font-size: 46px;
+            transition: opacity 0.35s ease, transform 0.35s ease;
+            filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.3));
+        }
+        .treasure-spot:hover .treasure-icon {
+            transform: scale(1.1) rotate(-4deg);
+        }
+        .treasure-message {
+            position: absolute;
+            inset: -14px;
+            opacity: 0;
+            transform: scale(0.75);
+            pointer-events: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: var(--container-bg);
+            border: 2px solid var(--accent-color);
+            border-radius: 24px;
+            padding: 14px;
+            font-size: 0.78rem;
+            font-weight: 700;
+            line-height: 1.5;
+            color: var(--text-color);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+            transition: opacity 0.35s ease, transform 0.35s ease;
+        }
+        .treasure-spot.revealed .treasure-icon {
+            opacity: 0;
+            transform: scale(0.4) rotate(15deg);
+        }
+        .treasure-spot.revealed .treasure-message {
+            opacity: 1;
+            transform: scale(1);
+            pointer-events: auto;
+        }
+        .treasure-hint {
+            position: absolute;
+            transform: translate(-50%, 0);
+            font-size: 0.72rem;
+            font-weight: 700;
+            color: var(--accent-color);
+            white-space: nowrap;
+            opacity: 0.85;
+        }
+ 
         .page-signature {
             text-align: center;
             margin: 20px 0 30px;
@@ -321,7 +483,7 @@
             width: 30px;
             text-align: center;
         }
-
+ 
         /* أزرار تواصل آمنة بدل عرض الرقم كنص */
         .contact-actions {
             display: flex;
@@ -352,7 +514,7 @@
         .contact-btn i {
             font-size: 1.1rem;
         }
-
+ 
         .footer-note {
             text-align: center;
             margin-top: 40px;
@@ -466,7 +628,7 @@
             color: var(--pending-color);
             border: 1px solid var(--pending-color);
         }
-
+ 
         @media (max-width: 600px) {
             .container { padding: 25px 20px; }
             .name { font-size: 2rem; }
@@ -478,16 +640,19 @@
             .page-signature { font-size: 1rem; }
             .control-buttons { top: 15px; left: 15px; }
             .ctrl-btn { width: 35px; height: 35px; font-size: 1rem; }
-            .dream-goals li {
-                flex-wrap: wrap;
-                gap: 10px;
-                padding: 14px 16px;
-                font-size: 0.95rem;
-            }
-            .goal-status { margin-right: 0; }
+            .map-pin { width: 76px; }
+            .pin-shape { width: 30px; height: 30px; }
+            .pin-emoji { font-size: 13px; }
+            .pin-label { font-size: 0.6rem; padding: 2px 7px; }
+            .map-waypoint-label { font-size: 0.68rem; }
+            .pin-number, .pin-check { width: 13px; height: 13px; font-size: 0.48rem; }
+            .treasure-spot { width: 100px; height: 100px; }
+            .treasure-icon { font-size: 36px; }
+            .treasure-message { font-size: 0.68rem; padding: 10px; inset: -10px; }
+            .treasure-hint { font-size: 0.64rem; }
             .contact-btn { width: 100%; justify-content: center; }
         }
-
+ 
         @media (prefers-reduced-motion: reduce) {
             * { animation: none !important; transition: none !important; }
         }
@@ -503,14 +668,14 @@
                 <i class="fas fa-share-alt"></i>
             </div>
         </div>
-
+ 
         <div class="profile-img">
             <img src="https://i.postimg.cc/KcVqtCFL/image.png" alt="الصورة الشخصية لعبود">
         </div>
-
+ 
         <h1 class="name">عبود</h1>
         <div class="title">صانع محتوى</div>
-
+ 
         <div class="symbol-buttons">
             <a href="https://instagram.com/abo0oudd" target="_blank" rel="noopener noreferrer" class="symbol-btn" title="انستقرام" aria-label="انستقرام"><i class="fab fa-instagram"></i></a>
             <a href="https://tiktok.com/@abo0oudd" target="_blank" rel="noopener noreferrer" class="symbol-btn" title="تيك توك" aria-label="تيك توك"><i class="fab fa-tiktok"></i></a>
@@ -518,7 +683,7 @@
             <a href="https://kick.com/abo0oudd" target="_blank" rel="noopener noreferrer" class="symbol-btn kick-btn" title="كيك" aria-label="كيك">K</a>
             <a href="https://discord.gg/7Wp4pXuuRX" target="_blank" rel="noopener noreferrer" class="symbol-btn" title="ديسكورد" aria-label="ديسكورد"><i class="fab fa-discord"></i></a>
         </div>
-
+ 
         <div class="sections-grid">
             <div id="aboutBtn" class="section-card" role="button" tabindex="0">
                 <i class="fas fa-user-astronaut"></i>
@@ -531,11 +696,11 @@
                 <p>أهداف 2026 وما بعد</p>
             </div>
         </div>
-
+ 
         <div class="page-signature">
          أبغا أرقام تخوف، وشهرة تخلي الكل يتكلم عني.
         </div>
-
+ 
         <!-- ===== أزرار تواصل آمنة بدل عرض الرقم كنص ===== -->
         <div class="contact-actions">
             <a href="https://wa.me/213552419065" target="_blank" rel="noopener noreferrer" class="contact-btn">
@@ -545,17 +710,17 @@
                 <i class="fas fa-envelope"></i> إيميل
             </a>
         </div>
-
+ 
         <div class="info-row">
             <span class="info-item"><i class="fas fa-map-marker-alt"></i> الجزائر</span>
             <span class="info-item"><i class="fas fa-clock"></i> متاح للتواصل: طوال الوقت</span>
         </div>
-
+ 
         <div class="footer-note">
             <span>abo0oudd © 2026 -</span>
         </div>
     </div>
-
+ 
     <!-- نافذة من أنا -->
     <div id="storyModal" class="modal-overlay">
         <div class="modal-card">
@@ -579,7 +744,7 @@
             <p>هذي قصتي للآن. والباقي بيصير.</p>
         </div>
     </div>
-
+ 
     <!-- نافذة خريطة حلمي -->
     <div id="dreamModal" class="modal-overlay">
         <div class="modal-card">
@@ -588,70 +753,166 @@
             <div class="modal-subtitle">
                 🏆 رحلتي نحو تحقيق الأهداف — كل خطوة تقربني أكثر
             </div>
-
-            <ul class="dream-goals">
-                <li>
-                    <span class="goal-icon">👥</span>
-                    <span class="goal-text">2,000 متابع</span>
-                    <span class="goal-status achieved">✅ تم</span>
-                </li>
-                <li>
-                    <span class="goal-icon">👥</span>
-                    <span class="goal-text">4,000 متابع</span>
-                    <span class="goal-status achieved">✅ تم</span>
-                </li>
-                <li>
-                    <span class="goal-icon">👥</span>
-                    <span class="goal-text">6,000 متابع</span>
-                    <span class="goal-status pending">⏳ قيد الإنجاز</span>
-                </li>
-                <li>
-                    <span class="goal-icon">👥</span>
-                    <span class="goal-text">8,000 متابع</span>
-                    <span class="goal-status pending">⏳ قيد الإنجاز</span>
-                </li>
-                <li>
-                    <span class="goal-icon">👥</span>
-                    <span class="goal-text">10,000 متابع</span>
-                    <span class="goal-status pending">⏳ قيد الإنجاز</span>
-                </li>
-                <li>
-                    <span class="goal-icon">🎬</span>
-                    <span class="goal-text">أول مليون مشاهدة</span>
-                    <span class="goal-status achieved">✅ تم</span>
-                </li>
-                <li>
-                    <span class="goal-icon">❤️</span>
-                    <span class="goal-text">أول 50 ألف لايك</span>
-                    <span class="goal-status achieved">✅ تم</span>
-                </li>
-                <li>
-                    <span class="goal-icon">❤️</span>
-                    <span class="goal-text">أول 100 ألف لايك</span>
-                    <span class="goal-status pending">⏳ قيد الإنجاز</span>
-                </li>
-                <li>
-                    <span class="goal-icon">📢</span>
-                    <span class="goal-text">أول إعلان</span>
-                    <span class="goal-status pending">⏳ قيد الإنجاز</span>
-                </li>
-            </ul>
-
+ 
+            <div class="treasure-map">
+                <svg viewBox="0 0 320 1100" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <linearGradient id="mapSky" x1="0" y1="0" x2="0" y2="1">
+                            <stop offset="0%" stop-color="var(--card-bg)"/>
+                            <stop offset="100%" stop-color="var(--info-bg)"/>
+                        </linearGradient>
+                        <linearGradient id="mountainGrad" x1="0" y1="1" x2="0" y2="0">
+                            <stop offset="0%" stop-color="var(--card-border)" stop-opacity="0.65"/>
+                            <stop offset="100%" stop-color="var(--accent-color)" stop-opacity="0.2"/>
+                        </linearGradient>
+                        <radialGradient id="treasureGlow" cx="50%" cy="50%" r="50%">
+                            <stop offset="0%" stop-color="var(--accent-color)" stop-opacity="0.4"/>
+                            <stop offset="100%" stop-color="var(--accent-color)" stop-opacity="0"/>
+                        </radialGradient>
+                        <filter id="pathGlow" x="-50%" y="-50%" width="200%" height="200%">
+                            <feGaussianBlur stdDeviation="3.2" result="blur"/>
+                            <feMerge>
+                                <feMergeNode in="blur"/>
+                                <feMergeNode in="SourceGraphic"/>
+                            </feMerge>
+                        </filter>
+                    </defs>
+ 
+                    <rect x="0" y="0" width="320" height="1100" fill="url(#mapSky)"/>
+ 
+                    <!-- جبال البداية -->
+                    <polygon points="0,90 55,15 100,90" fill="url(#mountainGrad)"/>
+                    <polygon points="70,90 130,5 190,90" fill="url(#mountainGrad)"/>
+                    <polygon points="160,90 225,20 290,90" fill="url(#mountainGrad)"/>
+                    <polygon points="240,90 300,25 320,90" fill="url(#mountainGrad)"/>
+ 
+                    <!-- تلال للعمق -->
+                    <path d="M0,300 Q80,280 160,300 T320,300 V330 H0 Z" fill="var(--card-border)" opacity="0.22"/>
+                    <path d="M0,560 Q80,540 160,560 T320,560 V590 H0 Z" fill="var(--card-border)" opacity="0.18"/>
+                    <path d="M0,820 Q80,800 160,820 T320,820 V850 H0 Z" fill="var(--card-border)" opacity="0.22"/>
+                    <path d="M0,970 Q80,950 160,970 T320,970 V1000 H0 Z" fill="var(--card-border)" opacity="0.2"/>
+ 
+                    <!-- الجزء المقطوع: المسافة اللي قطعتها بالفعل -->
+                    <path d="M160,35 L100,130 L230,235 L90,345 L230,455"
+                          fill="none" stroke="var(--accent-color)" stroke-width="6" stroke-linecap="round"
+                          stroke-linejoin="round" filter="url(#pathGlow)"/>
+ 
+                    <!-- الجزء المتبقي: الطريق القادم -->
+                    <path d="M230,455 L100,565 L230,675 L100,785 L230,895 L160,985 L160,1030"
+                          fill="none" stroke="var(--card-border)" stroke-width="4.5" stroke-linecap="round"
+                          stroke-linejoin="round" stroke-dasharray="1 14" opacity="0.8"/>
+ 
+                    <!-- أشجار -->
+                    <text x="30" y="195" font-size="26">🌲</text>
+                    <text x="272" y="195" font-size="24">🌳</text>
+                    <text x="30" y="415" font-size="24">🌳</text>
+                    <text x="272" y="415" font-size="26">🌲</text>
+                    <text x="30" y="635" font-size="26">🌲</text>
+                    <text x="272" y="635" font-size="24">🌳</text>
+                    <text x="30" y="855" font-size="24">🌳</text>
+                    <text x="272" y="855" font-size="26">🌲</text>
+                    <text x="30" y="965" font-size="24">🌲</text>
+ 
+                    <!-- غيوم -->
+                    <text x="25" y="55" font-size="28" opacity="0.8">☁️</text>
+                    <text x="248" y="45" font-size="24" opacity="0.7">☁️</text>
+ 
+                    <!-- علم البداية -->
+                    <text x="160" y="28" font-size="24" text-anchor="middle">🚩</text>
+ 
+                    <!-- توهج الكنز النهائي -->
+                    <circle cx="160" cy="1030" r="62" fill="url(#treasureGlow)"/>
+                </svg>
+ 
+                <div class="map-compass" title="خريطة الكنز">🧭</div>
+ 
+                <div class="map-pins">
+                    <div class="map-waypoint-label" style="left:50%; top:3.2%;">🚀 البداية</div>
+ 
+                    <!-- 1 - منجز -->
+                    <div class="map-pin" style="left:31.3%; top:11.8%;">
+                        <span class="pin-number">1</span>
+                        <div class="pin-shape achieved"><span class="pin-emoji">👥</span></div>
+                        <span class="pin-check"><i class="fas fa-check"></i></span>
+                        <div class="pin-label">2,000 متابع</div>
+                    </div>
+                    <!-- 2 - منجز -->
+                    <div class="map-pin" style="left:71.9%; top:21.4%;">
+                        <span class="pin-number">2</span>
+                        <div class="pin-shape achieved"><span class="pin-emoji">👥</span></div>
+                        <span class="pin-check"><i class="fas fa-check"></i></span>
+                        <div class="pin-label">4,000 متابع</div>
+                    </div>
+                    <!-- 3 - منجز -->
+                    <div class="map-pin" style="left:28.1%; top:31.4%;">
+                        <span class="pin-number">3</span>
+                        <div class="pin-shape achieved"><span class="pin-emoji">🎬</span></div>
+                        <span class="pin-check"><i class="fas fa-check"></i></span>
+                        <div class="pin-label">أول مليون مشاهدة</div>
+                    </div>
+                    <!-- 4 - منجز -->
+                    <div class="map-pin" style="left:71.9%; top:41.4%;">
+                        <span class="pin-number">4</span>
+                        <div class="pin-shape achieved"><span class="pin-emoji">❤️</span></div>
+                        <span class="pin-check"><i class="fas fa-check"></i></span>
+                        <div class="pin-label">أول 50 ألف لايك</div>
+                    </div>
+                    <!-- 5 - الهدف القادم -->
+                    <div class="map-pin" style="left:31.3%; top:51.4%;">
+                        <span class="pin-number">5</span>
+                        <div class="pin-shape next"><span class="pin-emoji">👥</span></div>
+                        <div class="pin-label next-label">🎯 6,000 متابع</div>
+                    </div>
+                    <!-- 6 - قيد الإنجاز -->
+                    <div class="map-pin" style="left:71.9%; top:61.4%;">
+                        <span class="pin-number">6</span>
+                        <div class="pin-shape pending"><span class="pin-emoji">👥</span></div>
+                        <div class="pin-label">8,000 متابع</div>
+                    </div>
+                    <!-- 7 - قيد الإنجاز -->
+                    <div class="map-pin" style="left:31.3%; top:71.4%;">
+                        <span class="pin-number">7</span>
+                        <div class="pin-shape pending"><span class="pin-emoji">👥</span></div>
+                        <div class="pin-label">10,000 متابع</div>
+                    </div>
+                    <!-- 8 - قيد الإنجاز -->
+                    <div class="map-pin" style="left:71.9%; top:81.4%;">
+                        <span class="pin-number">8</span>
+                        <div class="pin-shape pending"><span class="pin-emoji">❤️</span></div>
+                        <div class="pin-label">أول 100 ألف لايك</div>
+                    </div>
+                    <!-- 9 - قيد الإنجاز -->
+                    <div class="map-pin" style="left:50%; top:89.5%;">
+                        <span class="pin-number">9</span>
+                        <div class="pin-shape pending"><span class="pin-emoji">📢</span></div>
+                        <div class="pin-label">أول إعلان</div>
+                    </div>
+ 
+                    <!-- الكأس التفاعلي -->
+                    <div class="treasure-spot" id="treasureSpot" role="button" tabindex="0"
+                         aria-label="اضغط لتكتشف حلمي الأكبر" style="left:50%; top:93.6%;">
+                        <div class="treasure-icon">🏆</div>
+                        <div class="treasure-message">أبغا جمهور يحبني ويتابعني، ويكون جزء من الرحلة... جزء من العائلة 💛</div>
+                    </div>
+                    <div class="treasure-hint" style="left:50%; top:98.2%;">🌟 اضغط على الكأس لتكتشف حلمي الأكبر</div>
+                </div>
+            </div>
+ 
             <div class="stats-summary">
                 <span class="stats-achieved">✅ تم تحقيق 4</span>
                 <span class="stats-pending">⏳ متبقي 5</span>
             </div>
         </div>
     </div>
-
+ 
     <div id="toastMsg" class="toast-msg" role="status" aria-live="polite">✅ تم نسخ الرابط!</div>
-
+ 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             // === 1. الوضع الليلي/النهاري — يقرأ القيمة المحفوظة بدل ما يفرض الوضع الليلي دايماً ===
             const themeToggle = document.getElementById('themeToggle');
             const savedTheme = localStorage.getItem('theme') || 'dark'; // الافتراضي: ليلي أول مرة فقط
-
+ 
             function applyTheme(theme) {
                 if (theme === 'dark') {
                     document.body.classList.add('dark');
@@ -662,7 +923,7 @@
                 }
             }
             applyTheme(savedTheme);
-
+ 
             function toggleTheme() {
                 const isDark = document.body.classList.contains('dark');
                 const newTheme = isDark ? 'light' : 'dark';
@@ -673,7 +934,7 @@
             themeToggle.addEventListener('keydown', function(e) {
                 if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggleTheme(); }
             });
-
+ 
             // === 2. مشاركة الصفحة ===
             const shareBtn = document.getElementById('sharePageBtn');
             const toast = document.getElementById('toastMsg');
@@ -694,15 +955,15 @@
             shareBtn.addEventListener('keydown', function(e) {
                 if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); sharePage(); }
             });
-
+ 
             // === 3. نافذة "من أنا؟" ===
             const storyModal = document.getElementById('storyModal');
             const aboutBtn = document.getElementById('aboutBtn');
             const closeModalBtn = document.getElementById('closeModalBtn');
-
+ 
             function openStory(e) { e.preventDefault(); storyModal.classList.add('active'); }
             function closeStory() { storyModal.classList.remove('active'); }
-
+ 
             aboutBtn.addEventListener('click', openStory);
             aboutBtn.addEventListener('keydown', function(e) {
                 if (e.key === 'Enter' || e.key === ' ') { openStory(e); }
@@ -711,15 +972,20 @@
             closeModalBtn.addEventListener('keydown', function(e) {
                 if (e.key === 'Enter' || e.key === ' ') { closeStory(); }
             });
-
+ 
             // === 4. نافذة "خريطة حلمي" ===
             const dreamModal = document.getElementById('dreamModal');
             const dreamMapBtn = document.getElementById('dreamMapBtn');
             const closeDreamModalBtn = document.getElementById('closeDreamModalBtn');
-
-            function openDream(e) { e.preventDefault(); dreamModal.classList.add('active'); }
+            const treasureSpot = document.getElementById('treasureSpot');
+ 
+            function openDream(e) {
+                e.preventDefault();
+                dreamModal.classList.add('active');
+                if (treasureSpot) treasureSpot.classList.remove('revealed');
+            }
             function closeDream() { dreamModal.classList.remove('active'); }
-
+ 
             dreamMapBtn.addEventListener('click', openDream);
             dreamMapBtn.addEventListener('keydown', function(e) {
                 if (e.key === 'Enter' || e.key === ' ') { openDream(e); }
@@ -728,7 +994,19 @@
             closeDreamModalBtn.addEventListener('keydown', function(e) {
                 if (e.key === 'Enter' || e.key === ' ') { closeDream(); }
             });
-
+ 
+            // === 4.1 الكأس التفاعلي - يكشف رسالة الحلم الأكبر عند الضغط ===
+            if (treasureSpot) {
+                function toggleTreasure(e) {
+                    if (e) e.preventDefault();
+                    treasureSpot.classList.toggle('revealed');
+                }
+                treasureSpot.addEventListener('click', toggleTreasure);
+                treasureSpot.addEventListener('keydown', function(e) {
+                    if (e.key === 'Enter' || e.key === ' ') { toggleTreasure(e); }
+                });
+            }
+ 
             // === 5. إغلاق النوافذ من الخارج أو بزر Escape ===
             window.addEventListener('click', function(e) {
                 if (e.target === storyModal) closeStory();
